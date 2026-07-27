@@ -3,9 +3,6 @@
 > Understanding the foundation of Amazon Web Services (AWS): Global Infrastructure and the Shared Responsibility Model.
 
 ![AWS](https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws)
-![Level](https://img.shields.io/badge/Level-Beginner-success)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
-
 
 ---
 
@@ -176,32 +173,6 @@ AWS security responsibilities are divided between AWS and the customer.
 
 ```
 
-              AWS Shared Responsibility Model
-
-          AWS Responsibility
-     ----------------------------
-     Physical Security
-     Networking
-     Storage Hardware
-     Data Centres
-     Hypervisor
-     Global Infrastructure
-
-==============================
- Responsibility Boundary
-==============================
-
-     Customer Responsibility
-     ----------------------------
-     IAM Users & Roles
-     MFA
-     EC2 Security
-     Operating System
-     Applications
-     Data Encryption
-     Security Groups
-     Network Configuration
-
 ```
 
 ---
@@ -247,7 +218,7 @@ AWS calls this:
 
 ---
 
-# ✅ Best Practices
+#  Best Practices
 
 - Enable MFA
 - Use IAM Users instead of Root Account
@@ -291,55 +262,29 @@ AWS calls this:
 
 ## AWS Global Infrastructure
 
-> Replace with your own screenshot.
+![AWS global ](images/awsglobal.jpg)
+
 
 ```
 
-images/
-└── aws-global-infrastructure.png
+
 
 ```
 
-<img src="images/aws-global-infrastructure.png" width="900">
+
 
 ---
 
 ## AWS Regions
 
-```
-
-images/
-└── aws-regions.png
+![AWS Region ](images/awsregion.jpg)
 
 ```
 
-<img src="images/aws-regions.png" width="900">
 
----
-
-## Availability Zones
 
 ```
 
-images/
-└── availability-zones.png
-
-```
-
-<img src="images/availability-zones.png" width="900">
-
----
-
-## Shared Responsibility Model
-
-```
-
-images/
-└── shared-responsibility-model.png
-
-```
-
-<img src="images/shared-responsibility-model.png" width="900">
 
 ---
 
@@ -354,17 +299,6 @@ images/
 - Understanding the Shared Responsibility Model is essential for designing secure cloud solutions.
 
 ---
-
-# 🚀 Skills Gained
-
-- AWS Global Infrastructure
-- Cloud Computing Basics
-- High Availability
-- Fault Tolerance
-- Disaster Recovery Concepts
-- AWS Networking Basics
-- Cloud Security Fundamentals
-- Shared Responsibility Model
 
 ---
 

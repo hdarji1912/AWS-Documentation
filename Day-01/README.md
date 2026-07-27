@@ -67,6 +67,8 @@ A strong password was created using uppercase, lowercase, numbers, and special c
 
 Selected **Basic Support (Free)**.
 
+![ Free tier ](images/freeplan.jpg)
+
 ---
 
 ## Root MFA Configuration

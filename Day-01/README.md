@@ -22,7 +22,7 @@ The goal of this lab was to:
 * Visited https://aws.amazon.com/
 * Clicked **Create an AWS Account**
 
-  ![AWS Sign UP ](images/signup.png)
+  ![AWS Sign UP ](images/signup.jpg)
 
 
 ### Step 2 – Enter Account Details

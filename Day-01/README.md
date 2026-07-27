@@ -69,6 +69,17 @@ Selected **Basic Support (Free)**.
 
 ![ Free tier ](images/freeplan.jpg)
 
+### Step 9 – Sign in using root user
+
+Select root user 
+
+![ Sign in  ](images/signin.jpg)
+
+### Step 10 – Console
+
+![ Console  ](images/console.jpg)
+
+
 ---
 
 ## Root MFA Configuration

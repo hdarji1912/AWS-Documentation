@@ -49,10 +49,14 @@ A strong password was created using uppercase, lowercase, numbers, and special c
 * Country and address
 * Phone number
 
+![userdetail](images/userdetail.jpg)
+
 ### Step 6 – Add Billing Information
 
 * Added debit/credit card
 * Completed card verification
+
+![ Payment ](images/payment.jpg)
 
 ### Step 7 – Phone Verification
 

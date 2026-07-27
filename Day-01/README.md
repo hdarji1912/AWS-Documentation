@@ -39,6 +39,9 @@ The goal of this lab was to:
 
 A strong password was created using uppercase, lowercase, numbers, and special characters.
 
+![rootuser](images/rootuser.jpg)
+
+
 ### Step 5 – Add Contact Information
 
 * Personal account

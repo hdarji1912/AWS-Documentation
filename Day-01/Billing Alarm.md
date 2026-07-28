@@ -115,6 +115,7 @@ CloudWatch
 
 Navigate to:
 
+![Alarm ](images/alarm.jpg)
 ```
 CloudWatch
 → Alarms
@@ -127,23 +128,28 @@ CloudWatch
 
 Click:
 
+![Select Metric](images/metric.jpg)
+
 ```
 Select Metric
 ```
 
 Select:
-
+![Select Billing](images/billing.jpg)
 ```
 Billing
 ```
 
 Choose:
+![Select estimates](images/estimates.jpg)
 
 ```
 Total Estimated Charge
 ```
 
 Select Currency:
+
+![Select USD](images/selectusd.jpg)
 
 ```
 USD
@@ -167,6 +173,8 @@ Use the default settings:
 | Period | 6 Hours |
 
 Click:
+
+![Configure Metric](images/configuremetric.jpg)
 
 ```
 Next
@@ -202,6 +210,8 @@ Estimated Charges > $10
 
 Click:
 
+![Set Amount](images/setamount.jpg)
+
 ```
 Next
 ```
@@ -212,11 +222,20 @@ Next
 
 Select:
 
+![SNS](images/sns.jpg)
+
 ```
 Create New Topic
 ```
 
 Topic Name:
+
+
+![SNS Topic](images/snstopic.jpg)
+
+Create Topic :
+
+![create SNS](images/createsns.jpg)
 
 ```
 AWS-Billing-Alert
@@ -230,6 +249,7 @@ your-email@example.com
 
 Click:
 
+![create SNS](images/createsns.jpg)
 ```
 Create Topic
 ```
@@ -238,29 +258,165 @@ Create Topic
 
 # Step 8 – Confirm Email Subscription
 
-AWS will send a confirmation email.
+After creating the Amazon SNS topic, AWS sends a confirmation email to the email address you provided.
 
-Open your inbox.
+Create Subscription: 
 
-Click:
+![Subscription](images/subscription.jpg)
+
+---
+
+## 8.1 Check Subscription Status
+
+Immediately after creating the SNS subscription, its status will be:
+
+![Pending](images/pendingsub.jpg)
+```
+Pending confirmation
+```
+
+Example:
+
+```
+Amazon SNS
+   │
+   ▼
+Subscriptions
+
+Email: your-email@example.com
+
+Status:
+Pending confirmation
+```
+
+> **Note:** While the subscription is in **Pending confirmation**, Amazon SNS cannot send email notifications.
+
+---
+
+## 8.2 Open Your Email Inbox
+
+Sign in to your email account (for example, Gmail).
+
+Look for an email from:
+
+
+```
+Amazon Web Services Notifications
+```
+
+Subject (example):
+
+```
+AWS Notification - Subscription Confirmation
+```
+
+If you cannot find the email:
+
+- Check the **Spam** or **Junk** folder.
+- Wait a few minutes and refresh your inbox.
+
+---
+
+## 8.3 Confirm the Subscription
+
+Open the email.
+
+![Gmail](images/confirmsub.jpg)
+
+Click the button or link:
 
 ```
 Confirm Subscription
 ```
 
-Without confirmation, notifications will not be delivered.
+Example:
 
+```
+Amazon SNS Email
+
+You have chosen to subscribe to the topic:
+
+AWS-Billing-Alert
+
+Click below to confirm your subscription.
+
+[ Confirm Subscription ]
+```
+
+---
+
+## 8.4 Confirmation Successful
+
+After clicking **Confirm Subscription**, your browser opens a confirmation page similar to:
+
+![Gmail](images/confirmedsub.jpg)
+
+```
+Subscription confirmed!
+
+Your subscription request has been confirmed.
+```
+
+This means your email is now successfully subscribed to the Amazon SNS topic.
+
+---
+
+## 8.5 Verify Subscription Status
+
+Return to the AWS Console.
+
+Navigate to:
+
+
+```
+Amazon SNS
+→ Subscriptions
+```
+
+Verify that the subscription status has changed from:
+
+![Gmail](images/donesub.jpg)
+
+```
+Pending confirmation
+```
+
+to
+
+```
+Confirmed
+```
+
+Example:
+
+| Email | Status |
+|--------|---------|
+| your-email@example.com | Confirmed ✅ |
+
+---
+
+## ✅ Expected Result
+
+Your Amazon SNS email subscription is now active.
+
+Whenever your AWS Billing Alarm enters the **ALARM** state, Amazon SNS will automatically send an email notification to your confirmed email address.
+
+> **Important:** If the subscription is not confirmed, you will **not receive any billing alert emails**, even if the CloudWatch alarm is triggered.
 ---
 
 # Step 9 – Configure Alarm Details
 
 Alarm Name:
 
+![Select config](images/selectconfig.jpg)
+
 ```
 AWS-Billing-Alarm
 ```
 
 Description:
+
+![Description](images/alarmdescription.jpg)
 
 ```
 Alert when the estimated AWS charges exceed $10. Review the Billing Dashboard immediately and stop or terminate any unnecessary AWS resources to prevent additional costs.
@@ -285,7 +441,7 @@ Verify:
 - Alarm Name
 
 Click:
-
+![created alarm](images/alarmcreated.jpg)
 ```
 Create Alarm
 ```
@@ -423,10 +579,9 @@ Wait for AWS to publish the latest billing data.
 
 To avoid unnecessary resources:
 
-1. Delete the CloudWatch Billing Alarm.
-2. Delete the SNS Topic.
-3. Remove the SNS Subscription (optional).
-
+1. Delete the EC2 instance.
+2. Delete the VPC.
+ 
 ---
 
 # 🎉 Conclusion

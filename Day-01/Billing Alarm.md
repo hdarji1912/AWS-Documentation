@@ -233,10 +233,6 @@ Topic Name:
 
 ![SNS Topic](images/snstopic.jpg)
 
-Create Topic :
-
-![create SNS](images/createsns.jpg)
-
 ```
 AWS-Billing-Alert
 ```

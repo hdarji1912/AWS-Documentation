@@ -1,18 +1,5 @@
 # 🔐 AWS IAM – Users, Groups, JSON Policies, Least Privilege & Permission Boundaries
 
-<p align="center">
-  <img src="screenshots/banner.png" alt="AWS IAM Banner" width="100%">
-</p>
-
-<p align="center">
-  <a href="https://aws.amazon.com/iam/">
-    <img src="https://img.shields.io/badge/AWS-IAM-orange?style=for-the-badge&logo=amazonaws" />
-  </a>
-  <img src="https://img.shields.io/badge/Level-Beginner%20to%20Intermediate-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Hands--On-Lab-success?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge" />
-</p>
-
 ---
 
 # 📖 Overview
@@ -50,24 +37,21 @@ By completing this project, you will learn how to:
 AWS Account
 │
 ├── IAM Users
-│      ├── dev-user
-│      ├── admin-user
-│      └── auditor-user
+│      ├── DEV
+│      ├── Tester
 │
 ├── IAM Groups
 │      ├── Developers
-│      ├── Admins
-│      └── ReadOnly
+│  
 │
 ├── Custom Policies
-│      ├── S3 ReadOnly
-│      ├── EC2 Start/Stop
+│      ├── S3 policy
+│      ├── EC2 Start/Stop policy
 │      ├── Deny IAM
 │      └── Permission Boundary
 │
 └── AWS Resources
        ├── Amazon S3
-       ├── Amazon EC2
        └── IAM
 ```
 
@@ -112,41 +96,51 @@ Validate Using Policy Simulator
 
 Navigate to the AWS Management Console and open the IAM service.
 
-<p align="center">
-<img src="screenshots/01-iam-dashboard.png" width="100%">
-</p>
+Console :
+![IAM](images/console.jpg)
+
+IAM Dashboard :
+![IAM](images/iamdashboard.jpg)
+
 
 ---
 
 # 👥 Step 2 — Create IAM Groups
 
-Create the following groups:
-
-- Developers
-- Admins
-- ReadOnly
-
 These groups simplify permission management by assigning policies to groups instead of individual users.
 
-<p align="center">
-<img src="screenshots/02-create-groups.png" width="100%">
-</p>
+![IAM group](images/iamgroup.jpg)
+
+Create groups:
+
+- Developers
+
+![IAM group](images/groupname.jpg)
 
 ---
 
 # 👤 Step 3 — Create IAM Users
 
+![User](images/createuser.jpg)
+
 Create the following IAM users.
 
 | User | Group |
 |-------|--------|
-| dev-user | Developers |
-| admin-user | Admins |
-| auditor-user | ReadOnly |
+| DEV | Developers |
 
-<p align="center">
-<img src="screenshots/03-create-users.png" width="100%">
-</p>
+![username](images/username.jpg)
+
+Permission to user :
+
+![username](images/permissionsuer.jpg)
+
+Review user :
+![review](images/reviewuser.jpg)
+
+User created :
+
+![user created](images/usercreate.jpg)
 
 ---
 
@@ -156,15 +150,18 @@ Enable Management Console access for each IAM user and generate a temporary pass
 
 Users will be prompted to change the password during their first login.
 
-<p align="center">
-<img src="screenshots/04-console-access.png" width="100%">
-</p>
+![console](images/devsign.jpg)
 
 ---
 
 # 📜 Step 5 — Create Custom JSON Policy
 
+Policy Dashboard :
+![policy](images/createpolicy.jpg)
+
 Create a customer-managed IAM policy using JSON.
+
+![Policy created](images/policyedit.jpg)
 
 Example:
 
@@ -183,10 +180,12 @@ Example:
     ]
 }
 ```
+Review Policy :
+![policy](images/policyreview.jpg)
 
-<p align="center">
-<img src="screenshots/05-custom-policy.png" width="100%">
-</p>
+Policy created :
+![policy](images/policycreated.jpg)
+
 
 ---
 
@@ -208,16 +207,33 @@ Every IAM policy contains the following components.
 # 🔗 Step 6 — Attach Policy to IAM Group
 
 Attach the custom IAM policy to the Developers group.
-
 All users belonging to the Developers group automatically inherit these permissions.
 
-<p align="center">
-<img src="screenshots/06-attach-policy.png" width="100%">
-</p>
+Add Permission for Policy :
+![policy](images/addpermission.jpg)
+
+Attach Policy :
+![policy](images/attachpolicy.jpg)
+
+Attached Policy Check :
+![policy](images/policyattached.jpg)
 
 ---
+# Step -7 login test 
 
-# 🛡️ Step 7 — Principle of Least Privilege
+Loign through IAM User -- DEV :
+![Signin](images/devsign.jpg)
+
+Go to S3 Bucket and check access :
+![S3](images/s3access.jpg)
+
+Go to VPC and check access or not access :
+![vpc](images/vpcnotaccess.jpg)
+
+---
+---
+
+# 🛡️ Step 8 — Principle of Least Privilege
 
 The Principle of Least Privilege (PoLP) ensures that users receive only the permissions required to perform their specific job responsibilities.
 
@@ -234,13 +250,9 @@ The Principle of Least Privilege (PoLP) ensures that users receive only the perm
 - Create IAM Users
 - Delete IAM Policies
 
-<p align="center">
-<img src="screenshots/07-least-privilege.png" width="100%">
-</p>
-
 ---
 
-# 🚫 Step 8 — Explicit Deny Policy
+# 🚫 Step 9 — Explicit Deny Policy
 
 Create a policy that explicitly denies IAM access.
 
@@ -261,25 +273,19 @@ Example:
 
 In AWS, an explicit **Deny** always overrides an **Allow**.
 
-<p align="center">
-<img src="screenshots/08-explicit-deny.png" width="100%">
-</p>
 
 ---
 
-# 🔒 Step 9 — Permission Boundaries
+# 🔒 Step 10 — Permission Boundaries
 
 Permission Boundaries define the **maximum permissions** an IAM user or role can receive.
 
 Even if additional policies are attached later, the effective permissions cannot exceed the configured boundary.
 
-<p align="center">
-<img src="screenshots/09-permission-boundary.png" width="100%">
-</p>
 
 ---
 
-# 🧪 Step 10 — IAM Policy Simulator
+# 🧪 Step 11 — IAM Policy Simulator
 
 Use the IAM Policy Simulator to validate whether specific actions are allowed or denied before deploying changes.
 
@@ -290,10 +296,6 @@ Test actions such as:
 - Create S3 Bucket
 - Delete S3 Bucket
 - Create IAM User
-
-<p align="center">
-<img src="screenshots/10-policy-simulator.png" width="100%">
-</p>
 
 ---
 
@@ -331,35 +333,6 @@ AWS Evaluation
 - GitHub
 
 ---
-
-# 📁 Repository Structure
-
-```
-AWS-IAM-Lab/
-│
-├── README.md
-│
-├── screenshots/
-│   ├── banner.png
-│   ├── 01-iam-dashboard.png
-│   ├── 02-create-groups.png
-│   ├── 03-create-users.png
-│   ├── 04-console-access.png
-│   ├── 05-custom-policy.png
-│   ├── 06-attach-policy.png
-│   ├── 07-least-privilege.png
-│   ├── 08-explicit-deny.png
-│   ├── 09-permission-boundary.png
-│   └── 10-policy-simulator.png
-│
-├── policies/
-│   ├── S3ListBuckets.json
-│   ├── EC2StartStop.json
-│   ├── DenyIAM.json
-│   └── DeveloperBoundary.json
-│
-└── LICENSE
-```
 
 ---
 
@@ -421,4 +394,4 @@ It motivates me to continue documenting my AWS & DevOps learning journey and sha
 
 ---
 **Author:** Hardik Darji  
-**Role:** DevOps & Cloud Enthusiast 🚀
+**Role:** DevOps Engineer 🚀

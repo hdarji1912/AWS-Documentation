@@ -91,11 +91,11 @@ Enable:
 ```
 Receive CloudWatch Billing Alerts
 ```
-![ Billing Preferences ](images/billingprefrence.jpg)
+![Billing Preferences](images/billingpreference.jpg)
 
 Click:
 
-![ Billing Preferences ](images/billingprefrence1.jpg)
+![Billing Preferences](images/billingpreference1.jpg)
 
 ```
 Save Preferences

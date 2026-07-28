@@ -72,10 +72,10 @@ Validate Using Policy Simulator
 
 Navigate to the AWS Management Console and open the IAM service.
 
-Console :
+# Console :
 ![IAM](images/console.jpg)
 
-IAM Dashboard :
+# IAM Dashboard :
 ![IAM](images/iamdashboard.jpg)
 
 
@@ -107,14 +107,14 @@ Create the following IAM users.
 
 ![username](images/username.jpg)
 
-Permission to user :
+# Permission to user :
 
 ![username](images/permissionuser.jpg)
 
-Review user :
+# Review user :
 ![review](images/reviewuser.jpg)
 
-User created :
+# User created :
 
 ![user created](images/usercreate.jpg)
 
@@ -133,10 +133,10 @@ Users will be prompted to change the password during their first login.
 
 # 📜 Step 5 — Create Custom JSON Policy
 
-Policy Dashboard :
+# Policy Dashboard :
 ![policy](images/createpolicy.jpg)
 
-Create a customer-managed IAM policy using JSON.
+# Create a customer-managed IAM policy using JSON.
 
 ![Policy created](images/policyedit.jpg)
 
@@ -157,10 +157,10 @@ Example:
     ]
 }
 ```
-Review Policy :
+# Review Policy :
 ![policy](images/policyreview.jpg)
 
-Policy created :
+# Policy created :
 ![policy](images/policycreated.jpg)
 
 
@@ -186,25 +186,25 @@ Every IAM policy contains the following components.
 Attach the custom IAM policy to the Developers group.
 All users belonging to the Developers group automatically inherit these permissions.
 
-Add Permission for Policy :
+# Add Permission for Policy :
 ![policy](images/addpermission.jpg)
 
-Attach Policy :
+# Attach Policy :
 ![policy](images/attachpolicy.jpg)
 
-Attached Policy Check :
+# Attached Policy Check :
 ![policy](images/policyattached.jpg)
 
 ---
 # Step -7 login test 
 
-Loign through IAM User -- DEV :
+# Loign through IAM User -- DEV :
 ![Signin](images/devsign.jpg)
 
-Go to S3 Bucket and check access :
+# Go to S3 Bucket and check access :
 ![S3](images/s3access.jpg)
 
-Go to VPC and check access or not access :
+# Go to VPC and check access or not access :
 ![vpc](images/vpcnotaccess.jpg)
 
 ---
@@ -385,4 +385,3 @@ It motivates me to continue documenting my AWS & DevOps learning journey and sha
 
 ---
 **Author:** Hardik Darji  
-**Role:** DevOps Engineer 🚀

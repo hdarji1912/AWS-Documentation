@@ -31,30 +31,6 @@ By completing this project, you will learn how to:
 
 ---
 
-# 🏗️ Project Architecture
-
-```text
-AWS Account
-│
-├── IAM Users
-│      ├── DEV
-│      ├── Tester
-│
-├── IAM Groups
-│      ├── Developers
-│  
-│
-├── Custom Policies
-│      ├── S3 policy
-│      ├── EC2 Start/Stop policy
-│      ├── Deny IAM
-│      └── Permission Boundary
-│
-└── AWS Resources
-       ├── Amazon S3
-       └── IAM
-```
-
 ---
 
 # 📂 Project Workflow
@@ -133,7 +109,7 @@ Create the following IAM users.
 
 Permission to user :
 
-![username](images/permissionsuer.jpg)
+![username](images/permissionuser.jpg)
 
 Review user :
 ![review](images/reviewuser.jpg)
@@ -150,7 +126,8 @@ Enable Management Console access for each IAM user and generate a temporary pass
 
 Users will be prompted to change the password during their first login.
 
-![console](images/devsign.jpg)
+![username](images/username.jpg)
+
 
 ---
 
@@ -322,17 +299,31 @@ AWS Evaluation
 
 ---
 
-# 🛠️ Technologies Used
-
-- Amazon Web Services (AWS)
-- AWS IAM
-- JSON Policies
-- AWS Management Console
-- IAM Policy Simulator
-- Git
-- GitHub
 
 ---
+# 🏗️ Project Architecture
+
+```text
+AWS Account
+│
+├── IAM Users
+│      ├── DEV
+│      ├── Tester
+│
+├── IAM Groups
+│      ├── Developers
+│  
+│
+├── Custom Policies
+│      ├── S3 policy
+│      ├── EC2 Start/Stop policy
+│      ├── Deny IAM
+│      └── Permission Boundary
+│
+└── AWS Resources
+       ├── Amazon S3
+       └── IAM
+```
 
 ---
 
@@ -362,7 +353,7 @@ AWS Evaluation
 - Principle of Least Privilege
 - AWS Security Best Practices
 - Access Control
-- Cloud Security Fundamentals
+
 
 ---
 

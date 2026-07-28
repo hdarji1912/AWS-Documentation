@@ -1,4 +1,4 @@
-# AWS Billing Alarm Setup with Amazon CloudWatch
+# 💰 AWS Billing Alarm Setup with Amazon CloudWatch
 
 > Learn how to configure an AWS Billing Alarm using Amazon CloudWatch and Amazon SNS to receive email notifications when your AWS estimated charges exceed a specified threshold.
 
@@ -91,8 +91,11 @@ Enable:
 ```
 Receive CloudWatch Billing Alerts
 ```
+![ Billing Preferences ](images/billingprefrence.jpg)
 
 Click:
+
+![ Billing Preferences ](images/billingprefrence1.jpg)
 
 ```
 Save Preferences
@@ -414,19 +417,6 @@ Wait for AWS to publish the latest billing data.
 
 ---
 
-# 📸 Screenshots to Include
-
-- Billing Preferences
-- Enable CloudWatch Billing Alerts
-- CloudWatch Create Alarm
-- Select Billing Metric
-- Configure Threshold
-- Create SNS Topic
-- Email Subscription Confirmation
-- Alarm Created Successfully
-- CloudWatch Alarm Dashboard
-- Billing Dashboard
-
 ---
 
 # 🧹 Cleanup
@@ -444,5 +434,11 @@ To avoid unnecessary resources:
 You have successfully configured an **AWS Billing Alarm** using **Amazon CloudWatch** and **Amazon SNS**. This setup helps you monitor AWS costs proactively by sending email notifications whenever your estimated charges exceed your configured threshold, allowing you to take immediate action and avoid unexpected expenses.
 
 ---
+
+👨‍💻 Author
+
+Hardik
+
+DevOps Engineer| AWS Learner
 
 ## ⭐ If you found this project helpful, consider giving the repository a star!

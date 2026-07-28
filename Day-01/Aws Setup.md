@@ -1,7 +1,6 @@
 # ☁️ AWS Account Setup & Root MFA Security Lab
 
 This repository documents the secure setup of a new AWS account and the configuration of Multi-Factor Authentication (MFA) for the root user.
-
 ---
 
 ## Objective

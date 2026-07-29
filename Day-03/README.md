@@ -57,3 +57,9 @@ Create Bucket
 
 ![Bucket](images/bucketcreate.jpg)
 
+Bucket Name :
+
+![Bucket](images/bucketname.jpg)
+
+
+

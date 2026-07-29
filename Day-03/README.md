@@ -1,7 +1,6 @@
 # 🔐 AWS IAM Trust Policy & Permission Policy with STS AssumeRole
-
 Learn the difference between IAM Trust Policy and Permission Policy by performing a complete hands-on lab using AWS Security Token Service (STS) AssumeRole.
----
+
 This lab demonstrates how an IAM User can securely assume an IAM Role to obtain temporary credentials and access AWS resources following the Principle of Least Privilege (PoLP).
 ---
 

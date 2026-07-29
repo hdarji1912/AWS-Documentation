@@ -55,5 +55,5 @@ Amazon S3
 
 Create Bucket
 
-![Bucket](images/bucketcreate.png)
+![Bucket](images/bucketcreate.jpg)
 

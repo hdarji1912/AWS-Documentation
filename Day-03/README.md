@@ -113,10 +113,168 @@ Created IAM user :
 
 ![user](images/iamusercreated.jpg)
 
----Note
+--- 
  Do not attach any S3 permissions.
 ---
+---
 
+# Step 3 — Generate Access Keys
+
+Open :
+
+IAM
+
+↓
+
+developer
+
+↓
+
+Security Credentials
+
+↓
+
+Create Access Key
+
+![Access key ](images/userkeyaccess.jpg)
+
+Create Access Key :
+
+![Access key ](images/accesskeycreate.jpg)
+
+Access Key : 
+
+![Access key ](images/accesskeygenerate.jpg)
+
+# Best practice don't show access key . But I have hide my Secret key so no problem .
+
+---
+# Step 4 — Launch EC2 instance 
+
+launch Instance :
+
+![EC2 ](images/launche2.jpg)
+
+Successfully Launch Instance :
+
+![EC2 ](images/ec2launced.jpg)
+
+EC2 connect to local via SSH :
+
+![EC2 ](images/ec2connect.jpg)
+
+Successfully SSH to local :
+
+![EC2 ](images/sshtolocal.jpg)
+
+---
+
+# Step 5 — Configure AWS CLI
+
+AWS CLI Download :
+
+![AWS ](images/awscli.jpg)
+
+# Verify 
+
+aws sts get-caller-identity :
+
+![AWS ](images/stscall.jpg)
+
+---
+# Step 6 — Verify User Has No S3 Access
+
+Run -- aws s3 ls  
+
+![AWS ](images/accessdenied.jpg)
+
+# Expected  -- AccessDenied
+This confirms that the IAM User has no direct S3 permissions.
+
+---
+
+# Step 7 — Create IAM Role
+
+Navigate to :
+
+IAM
+
+↓
+
+Roles
+
+↓
+
+Create Role
+
+IAM Dashboard :
+
+![IAM](images/iamdashboard.jpg)
+
+Create Role :
+
+![IAM](images/iamrole.jpg)
+
+---
+# Step 8 — Configure Trust Policy
+
+Replace the default Trust Policy with:
+
+Trust Policy :
+
+![IAM](images/roletrustpolicy.jpg)
+
+Example :
+---
+{
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Effect":"Allow",
+      "Principal":{
+        "AWS":"arn:aws:iam::<ACCOUNT-ID>:user/developer"
+      },
+      "Action":"sts:AssumeRole"
+    }
+  ]
+}
+--- 
+# This policy allows only the developer IAM User to assume the role.
+
+---
+
+# Step 9 — Attach Permission Policy
+
+Attach the following inline policy:
+
+
+Permission Policy :
+
+![IAM](images/permissionpolicy.jpg)
+
+Example :
+---
+{
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Effect":"Allow",
+      "Action":"s3:ListBucket",
+      "Resource":"arn:aws:s3:::my-demo-bucket-12345"
+    },
+    {
+      "Effect":"Allow",
+      "Action":"s3:GetObject",
+      "Resource":"arn:aws:s3:::my-demo-bucket-12345/*"
+    }
+  ]
+}
+---
+# step -10 Successfully Created Role
+
+Created Role :
+
+![IAM](images/rolecreated.jpg)
 
 
 

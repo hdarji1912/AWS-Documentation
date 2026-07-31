@@ -216,59 +216,64 @@ Create Role :
 ![IAM](images/iamrole.jpg)
 
 ---
-# Step 8 — Configure Trust Policy
+## Step 8 – Configure the Trust Policy
 
-Replace the default Trust Policy with:
+The **Trust Policy** defines **who is allowed to assume the IAM Role**.
 
-Trust Policy :
+Replace the default trust policy with the following JSON:
 
-![IAM](images/roletrustpolicy.jpg)
+# Trust Policy :
+![Trust Policy](images/roletrustpolicy.jpg)
 
-Example :
----
+### Example
+
+```json
 {
-  "Version":"2012-10-17",
-  "Statement":[
+  "Version": "2012-10-17",
+  "Statement": [
     {
-      "Effect":"Allow",
-      "Principal":{
-        "AWS":"arn:aws:iam::<ACCOUNT-ID>:user/developer"
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::<ACCOUNT-ID>:user/developer"
       },
-      "Action":"sts:AssumeRole"
+      "Action": "sts:AssumeRole"
     }
   ]
 }
---- 
-# This policy allows only the developer IAM User to assume the role.
+```
+
+> **Replace** `<ACCOUNT-ID>` with your AWS Account ID.
 
 ---
-
 # Step 9 — Attach Permission Policy
 
-Attach the following inline policy:
+The **Permission Policy** defines **what actions the IAM Role is allowed to perform** after it has been assumed.
 
+Attach the following inline policy to the IAM Role.
 
-Permission Policy :
+## Permission Policy
 
-![IAM](images/permissionpolicy.jpg)
+![Permission Policy](images/permissionpolicy.jpg)
 
-Example :
----
+### Example
+
+```json
 {
-  "Version":"2012-10-17",
-  "Statement":[
+  "Version": "2012-10-17",
+  "Statement": [
     {
-      "Effect":"Allow",
-      "Action":"s3:ListBucket",
-      "Resource":"arn:aws:s3:::my-demo-bucket-12345"
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::my-demo-bucket-12345"
     },
     {
-      "Effect":"Allow",
-      "Action":"s3:GetObject",
-      "Resource":"arn:aws:s3:::my-demo-bucket-12345/*"
+      "Effect": "Allow",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::my-demo-bucket-12345/*"
     }
   ]
 }
+```
 ---
 # step -10 Successfully Created Role
 

@@ -1,51 +1,23 @@
 # 🔐 AWS IAM Trust Policy & Permission Policy with STS AssumeRole
-
 Learn the difference between IAM Trust Policy and Permission Policy by performing a complete hands-on lab using AWS Security Token Service (STS) AssumeRole.
----
+
 This lab demonstrates how an IAM User can securely assume an IAM Role to obtain temporary credentials and access AWS resources following the Principle of Least Privilege (PoLP).
----
-
-#📖 Table of Contents
-
-Introduction
-Architecture
-Prerequisites
-Lab Objectives
-Understanding IAM Policies
-Hands-on Implementation
-Step 1 – Create an S3 Bucket
-Step 2 – Create an IAM User
-Step 3 – Generate Access Keys
-Step 4 – Configure AWS CLI
-Step 5 – Verify No S3 Access
-Step 6 – Create an IAM Role
-Step 7 – Configure Trust Policy
-Step 8 – Configure Permission Policy
-Step 9 – Allow User to Assume Role
-Step 10 – Copy Role ARN
-Step 11 – Assume Role Using STS
-Step 12 – Export Temporary Credentials
-Step 13 – Verify Assumed Identity
-Step 14 – Access S3 Bucket
-Step 15 – Download Object
-Step 16 – Test Write Permission
-Trust Policy vs Permission Policy
-STS Workflow
-Troubleshooting
-Conclusion
 ---
 
 # 🎯 Lab Objectives
 
-After completing this lab, you will understand how to:
+After completing this lab, you will be able to:
 
-Create IAM Users and IAM Roles
-Configure Trust Policies
-Configure Permission Policies
-Generate temporary credentials using AWS STS
-Assume an IAM Role
-Access Amazon S3 using temporary credentials
-Understand the complete AssumeRole workflow
+- Create and manage IAM Users and IAM Roles.
+- Configure IAM Trust Policies to control who can assume a role.
+- Configure IAM Permission Policies to define what actions a role can perform.
+- Generate temporary security credentials using AWS Security Token Service (STS).
+- Assume an IAM Role using the `sts:AssumeRole` API.
+- Access Amazon S3 resources using temporary STS credentials.
+- Verify the Principle of Least Privilege (PoLP) through role-based access.
+- Understand the complete AWS STS AssumeRole authentication and authorization workflow.
+- Differentiate between Trust Policies and Permission Policies with practical examples.
+- Gain hands-on experience implementing secure, role-based access control in AWS.
 ---
 
 # 📌 Introduction
@@ -64,6 +36,63 @@ In this hands-on lab, you'll configure both policies from scratch and use tempor
 ---
 # 🏗️ Architecture
 
-![Architecture](images/architecture.png)
+![Architecture](images/architecture1.png)
+---
+# Hands-on Implementation
+
+# Step 1 — Create an Amazon S3 Bucket
+
+Navigate to :
+
+AWS Console
+
+↓
+
+Amazon S3
+
+↓
+
+Create Bucket
+
+![Bucket](images/bucketcreate.jpg)
+
+Bucket Name :
+
+![Bucket](images/bucketname.jpg)
+
+Bucket Generated :
+
+![Bucket](images/bucketgenerate.jpg)
+
+Upload File to Bucket :
+
+![Bucket](images/bucketupload.jpg)
+
+File Uploading Pending to Bucket :
+
+![Bucket](images/bkuploadpending.jpg)
+
+File Uploaded Successfully in the Bucket :
+
+![Bucket](images/fileupload.jpg)
+
+---
+
+# Step 2 — Create IAM User
+
+Navigate to :
+IAM
+
+↓
+
+Users
+
+↓
+
+Create User
+
+
+
+
 
 

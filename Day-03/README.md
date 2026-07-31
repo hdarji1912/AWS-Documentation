@@ -85,6 +85,7 @@ File Uploaded Successfully in the Bucket :
 # Step 2 — Create IAM User
 
 Navigate to :
+---
 IAM
 
 ↓
@@ -94,7 +95,27 @@ Users
 ↓
 
 Create User
+---
 
+IAM Dashboard :
+
+![user](images/iamuser.jpg)
+
+Create User :
+
+![user](images/iamusercreate.jpg)
+
+IAM User Name :
+
+![user](images/username.jpg)
+
+Created IAM user :
+
+![user](images/iamusercreated.jpg)
+
+---Note
+ Do not attach any S3 permissions.
+---
 
 
 

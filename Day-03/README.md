@@ -470,14 +470,14 @@ Access Amazon S3
 ---
 # 🎯 Key Takeaways
 
-Understood the difference between Trust Policy and Permission Policy.
-Created an IAM User without direct S3 access.
-Created an IAM Role with a Trust Policy.
-Attached a Permission Policy to the IAM Role.
-Allowed the IAM User to assume the IAM Role.
-Generated temporary credentials using AWS STS.
-Accessed Amazon S3 using the assumed role.
-Verified the Principle of Least Privilege by confirming write operations were denied.
+-Understood the difference between Trust Policy and Permission Policy.
+-Created an IAM User without direct S3 access.
+-Created an IAM Role with a Trust Policy.
+-Attached a Permission Policy to the IAM Role.
+-Allowed the IAM User to assume the IAM Role.
+-Generated temporary credentials using AWS STS.
+-Accessed Amazon S3 using the assumed role.
+-Verified the Principle of Least Privilege by confirming write operations were denied.
 
 ---
 

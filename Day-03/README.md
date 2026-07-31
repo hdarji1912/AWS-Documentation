@@ -423,22 +423,35 @@ This confirms that the role only has read permissions.
 # 🔄 Complete STS AssumeRole Workflow
 
 IAM User
-     │
-     │
+
+     |
+     ▼
+     
 Permission to call sts:AssumeRole
+
      │
      ▼
+     
 AWS STS
+
      │
+     ▼
+     
 Checks Trust Policy
+
      │
      ▼
+     
 Issues Temporary Credentials
+
      │
      ▼
+     
 Permission Policy Evaluated
+
      │
      ▼
+     
 Access Amazon S3
 
 
@@ -466,6 +479,11 @@ Generated temporary credentials using AWS STS.
 Accessed Amazon S3 using the assumed role.
 Verified the Principle of Least Privilege by confirming write operations were denied.
 
+---
+
+# 👨‍💻 Author
+
+**Hardik Darji**
 ---
 
 ⭐ If you found this project helpful, consider giving this repository a star!

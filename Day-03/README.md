@@ -68,13 +68,17 @@ Upload File to Bucket :
 
 ![Bucket](images/bucketupload.jpg)
 
+File Inserting to Bucket :
+
+![Bucket](images/bkfileupload.jpg)
+
 File Uploading Pending to Bucket :
 
-![Bucket](images/bkuploadpending.jpg)
+![Bucket](images/bkfileuploading.jpg)
 
 File Uploaded Successfully in the Bucket :
 
-![Bucket](images/fileupload.jpg)
+![Bucket](images/bkfileuploaded.jpg)
 
 ---
 

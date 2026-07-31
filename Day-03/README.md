@@ -60,5 +60,24 @@ Bucket Name :
 
 ![Bucket](images/bucketname.jpg)
 
+Bucket Generated :
+
+![Bucket](images/bucketgenerate.jpg)
+
+Upload File to Bucket :
+
+![Bucket](images/bucketupload.jpg)
+
+File Uploading Pending to Bucket :
+
+![Bucket](images/bkuploadpending.jpg)
+
+File Uploaded Successfully in the Bucket :
+
+![Bucket](images/fileupload.jpg)
+
+
+
+
 
 

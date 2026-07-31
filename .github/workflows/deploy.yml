@@ -1,4 +1,4 @@
-name: AWS OIDC Challenge
+name: AWS OIDC Demo
 
 on:
   workflow_dispatch:

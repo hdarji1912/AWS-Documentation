@@ -1,0 +1,8 @@
+Hello from Amazon S3!
+
+This is a sample hello.txt file uploaded to an S3 bucket.
+
+Created for AWS S3 upload testing.
+Date: 2026-07-29
+
+Have a great day!

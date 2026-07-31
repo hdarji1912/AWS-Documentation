@@ -275,11 +275,201 @@ Attach the following inline policy to the IAM Role.
 }
 ```
 ---
-# step -10 Successfully Created Role
+# Step -10 Successfully Created Role
 
 Created Role :
 
 ![IAM](images/rolecreated.jpg)
+
+---
+# Step 11 — Allow IAM User to Assume Role
+
+Attach this policy to the developer IAM User:
+
+![IAM](images/devinlinepolicy.jpg)
+
+### Example
+
+```json
+{
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Effect":"Allow",
+      "Action":"sts:AssumeRole",
+      "Resource":"arn:aws:iam::<ACCOUNT-ID>:role/S3ReadOnlyRole"
+    }
+  ]
+}
+```
+---
+# Step 12 — Copy Role ARN
+
+### Example
+
+```bash
+arn:aws:iam::123456789012:role/S3ReadOnlyRole
+
+```
+![IAM](images/arn.jpg)
+
+---
+# Step 13 — Assume the IAM Role Using AWS STS
+
+Run the following AWS CLI command to assume the IAM Role and obtain temporary security credentials.
+
+```bash
+aws sts assume-role \
+  --role-arn arn:aws:iam::123456789012:role/S3ReadOnlyRole \
+  --role-session-name DemoSession
+```
+
+> **Replace** `123456789012` with your AWS Account ID and `S3ReadOnlyRole` with your IAM Role name.
+
+### Expected Output
+
+```json
+{
+  "Credentials": {
+    "AccessKeyId": "ASIA****************",
+    "SecretAccessKey": "********************************",
+    "SessionToken": "********************************",
+    "Expiration": "2026-07-31T12:30:00Z"
+  },
+  "AssumedRoleUser": {
+    "Arn": "arn:aws:sts::123456789012:assumed-role/S3ReadOnlyRole/DemoSession"
+  }
+}
+```
+
+📷 ** Assume Role STS **
+
+![IAM](images/assumerole.jpg)
+
+
+```text
+images/sts-assume-role-output.png
+```
+---
+# Step 14 — Export Temporary Credentials
+
+```bash
+export AWS_ACCESS_KEY_ID=ASIA...
+
+export AWS_SECRET_ACCESS_KEY=...
+
+export AWS_SESSION_TOKEN=...
+```
+---
+# Step 15 — Verify Assumed Identity
+
+Verify 
+```bash
+aws sts get-caller-identity
+```
+![IAM](images/stscall.jpg)
+
+Expected :
+```json
+{
+"Arn":"arn:aws:sts::123456789012:assumed-role/S3ReadOnlyRole/DemoSession"
+}
+```
+---
+# Step 16 — Access the S3 Bucket
+
+```bash
+aws s3 ls s3://my-demo-bucket-12345
+```
+Expected :
+
+```bash
+hello.txt
+```
+---
+# Step 17 — Download Object
+
+![S3](images/awsa3download.jpg)
+```bash
+aws s3 cp s3://my-demo-bucket-12345/hello.txt .
+```
+
+View the file
+
+```bash
+cat hello.txt
+```
+---
+
+# Step 18 — Verify Least Privilege
+
+Attempt to upload a file.
+
+```bash
+aws s3 cp upload.txt s3://my-demo-bucket-12345/
+```
+![S3](images/polp.jpg)
+
+Expected
+
+```text
+AccessDenied
+```
+
+This confirms that the role only has read permissions.
+
+---
+
+# 🔄 Complete STS AssumeRole Workflow
+
+IAM User
+     │
+     │
+Permission to call sts:AssumeRole
+     │
+     ▼
+AWS STS
+     │
+Checks Trust Policy
+     │
+     ▼
+Issues Temporary Credentials
+     │
+     ▼
+Permission Policy Evaluated
+     │
+     ▼
+Access Amazon S3
+
+
+---
+
+# 🚨 Troubleshooting
+
+| Error                            | Cause                               | Solution                                          |
+| -------------------------------- | ----------------------------------- | ------------------------------------------------- |
+| AccessDenied while assuming role | Missing `sts:AssumeRole` permission | Attach AssumeRole policy to IAM User              |
+| AccessDenied after assuming role | Missing S3 permissions              | Verify Permission Policy                          |
+| InvalidClientTokenId             | Invalid or expired credentials      | Reconfigure AWS CLI or export new STS credentials |
+| ExpiredToken                     | Session expired                     | Run `aws sts assume-role` again                   |
+| NoSuchBucket                     | Incorrect bucket name               | Verify bucket name and Region                     |
+
+---
+# 🎯 Key Takeaways
+
+Understood the difference between Trust Policy and Permission Policy.
+Created an IAM User without direct S3 access.
+Created an IAM Role with a Trust Policy.
+Attached a Permission Policy to the IAM Role.
+Allowed the IAM User to assume the IAM Role.
+Generated temporary credentials using AWS STS.
+Accessed Amazon S3 using the assumed role.
+Verified the Principle of Least Privilege by confirming write operations were denied.
+
+---
+
+⭐ If you found this project helpful, consider giving this repository a star!
+
 
 
 

@@ -4,22 +4,6 @@ Learn the difference between IAM Trust Policy and Permission Policy by performin
 This lab demonstrates how an IAM User can securely assume an IAM Role to obtain temporary credentials and access AWS resources following the Principle of Least Privilege (PoLP).
 ---
 
-# 🎯 Lab Objectives
-
-After completing this lab, you will be able to:
-
-- Create and manage IAM Users and IAM Roles.
-- Configure IAM Trust Policies to control who can assume a role.
-- Configure IAM Permission Policies to define what actions a role can perform.
-- Generate temporary security credentials using AWS Security Token Service (STS).
-- Assume an IAM Role using the `sts:AssumeRole` API.
-- Access Amazon S3 resources using temporary STS credentials.
-- Verify the Principle of Least Privilege (PoLP) through role-based access.
-- Understand the complete AWS STS AssumeRole authentication and authorization workflow.
-- Differentiate between Trust Policies and Permission Policies with practical examples.
-- Gain hands-on experience implementing secure, role-based access control in AWS.
----
-
 # 📌 Introduction
 
 AWS Identity and Access Management (IAM) provides secure access to AWS resources.
@@ -37,6 +21,7 @@ In this hands-on lab, you'll configure both policies from scratch and use tempor
 # 🏗️ Architecture
 
 ![Architecture](images/architecture1.png)
+
 ---
 # Hands-on Implementation
 
@@ -468,16 +453,23 @@ Access Amazon S3
 | NoSuchBucket                     | Incorrect bucket name               | Verify bucket name and Region                     |
 
 ---
+
 # 🎯 Key Takeaways
 
--Understood the difference between Trust Policy and Permission Policy.
--Created an IAM User without direct S3 access.
--Created an IAM Role with a Trust Policy.
--Attached a Permission Policy to the IAM Role.
--Allowed the IAM User to assume the IAM Role.
--Generated temporary credentials using AWS STS.
--Accessed Amazon S3 using the assumed role.
--Verified the Principle of Least Privilege by confirming write operations were denied.
+After completing this hands-on lab, you have successfully:
+
+- ✅ Understood the difference between **IAM Trust Policies** and **IAM Permission Policies**.
+- ✅ Learned how **AWS Security Token Service (STS)** generates temporary security credentials.
+- ✅ Created an **IAM User** without direct access to Amazon S3.
+- ✅ Created an **IAM Role** with a custom **Trust Policy**.
+- ✅ Attached a **Permission Policy** to define the actions the IAM Role can perform.
+- ✅ Granted the IAM User permission to assume the IAM Role using `sts:AssumeRole`.
+- ✅ Assumed the IAM Role using the AWS CLI and received temporary STS credentials.
+- ✅ Verified the assumed identity using the `aws sts get-caller-identity` command.
+- ✅ Accessed an Amazon S3 bucket using temporary credentials instead of long-term access keys.
+- ✅ Implemented the **Principle of Least Privilege (PoLP)** by allowing only the minimum required permissions.
+- ✅ Gained practical experience with AWS IAM Roles, Trust Policies, Permission Policies, and STS AssumeRole.
+- ✅ Built a real-world IAM authentication and authorization workflow commonly used in production AWS environments.
 
 ---
 

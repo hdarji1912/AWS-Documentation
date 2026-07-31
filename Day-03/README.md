@@ -76,6 +76,21 @@ File Uploaded Successfully in the Bucket :
 
 ![Bucket](images/fileupload.jpg)
 
+---
+
+# Step 2 — Create IAM User
+
+Navigate to :
+IAM
+
+↓
+
+Users
+
+↓
+
+Create User
+
 
 
 

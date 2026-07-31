@@ -54,7 +54,7 @@ Amazon S3
 
 Create Bucket
 
-![Bucket](images/bucketcreate.jpg)
+![Bucket](images/bucketinitial.jpg)
 
 Bucket Name :
 

@@ -105,26 +105,6 @@ Move to : Dev-OU
 ![Architecture](images/account.png)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Dev-OU SCP Attached Policies.
 
 ![Architecture](images/devou.png)
@@ -135,10 +115,159 @@ Move to : Dev-OU
 ![Architecture](images/scp.png)
 
 ---
+## Step 5 – Understand the Management Account
 
-## S3 Bucket Permisssion 
+The Management Account should not run workloads.
 
-![Architecture](images/s3.png)
+![Architecture](images/awsmanagementaccount.jpg)
 
+It is only used for:
 
+- AWS Organizations
+- SCP Management
+- Billing
+- Cost Explorer
+- Identity Center
+- Central Governance
 
+Never deploy production applications here.
+---
+
+## Step 6 – Enable IAM Identity Center
+
+Go to :
+IAM Identity Center
+
+Click :
+Enable
+
+AWS creates :
+Identity Store
+
+↓
+
+Access Portal
+
+↓
+
+Permission Set Service
+
+# AWS Access Portal
+
+![Architecture](images/accessportal.png)
+
+---
+
+## Step 7 – Login  
+
+Open :
+
+AWS Access Portal
+
+Choose :
+
+CloudAdhar-Dev
+
+Click :
+
+Management Console
+
+Now you're inside the Dev account.
+
+---
+
+## Step 8 – Verify STS Session
+
+Open CloudShell. 
+
+Run
+```bash
+aws sts get-caller-identity
+```
+
+Example :
+```json
+{
+ "Account":"123456789012",
+
+ "Arn":"arn:aws:sts::123456789012:assumed-role/AWSReservedSSO_CloudAdhar-Admin_xxxxx/cloudadhar-demo"
+}
+```
+![Architecture](images/devlogin.png)
+
+Notice : assumed-role
+
+That means you are not using long-term IAM user credentials.
+
+You're using temporary STS credentials.
+
+---
+## Step 9 – Create an S3 Bucket without SCP
+
+Generated a unique Amazon S3 bucket name and successfully created the bucket while the member account was under the Root of the AWS Organization.
+
+Run in cloudshell: 
+```bash
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+
+BUCKET="cloudadhar-before-scp-${ACCOUNT_ID}-$(date +%s)"
+
+aws s3api create-bucket \
+--bucket "$BUCKET" \
+--region ap-south-1 \
+--create-bucket-configuration LocationConstraint=ap-south-1
+```
+Result :
+
+Bucket Created
+
+Reason :
+
+Permission Set
+
+↓
+
+AdministratorAccess
+
+↓
+
+No SCP
+
+↓
+
+Allowed
+
+# S3 Bucket creted without SCP
+
+![Architecture](images/cloudshell.png)
+
+## Deleted the Test Bucket
+
+```bash
+
+aws s3api delete-bucket --bucket "$BUCKET" --region "$AWS_REGION"
+
+aws s3api head-bucket --bucket "$BUCKET"
+```
+# S3 Bucket Deleted
+
+![Architecture](images/s3cloudshell.png)
+
+---
+## Step 10 – Create an SCP
+
+Management Account 
+
+Go to
+
+Organizations
+
+↓
+
+Policies
+
+↓
+
+Service Control Policies
+
+Create

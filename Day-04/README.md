@@ -43,3 +43,15 @@ After completing this lab, I gained hands-on experience with:
 ![Architecture](images/architecture.png)
 
 ---
+## AWS Organizations  with SCP
+
+![Architecture](images/scp.png)
+
+---
+
+## S3 Bucket Permisssion 
+
+![Architecture](images/s3.png)
+
+---
+

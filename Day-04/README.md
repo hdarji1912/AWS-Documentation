@@ -74,7 +74,7 @@ AWS Organizations
 Click :
 Create Organization
 
-![Architecture](images/awsaccount.png)
+![Architecture](images/awsaccount.jpg)
 
 AWS creates :
 Root
@@ -98,7 +98,7 @@ Inside Organizations
 
 Create :  CloudAdhar-Dev
 
-![Architecture](images/createawsaccount.png)
+![Architecture](images/createawsaccount.jpg)
 
 Move to : Dev-OU
 

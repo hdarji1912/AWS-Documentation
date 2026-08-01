@@ -74,6 +74,8 @@ AWS Organizations
 Click :
 Create Organization
 
+![Architecture](images/awsaccount.jpg)
+
 AWS creates :
 Root
 
@@ -85,12 +87,44 @@ Root
 
 Create : Dev-OU , Test-OU , Prod-OU
 
-# AWS Organization Hierarchy
+AWS Organization Hierarchy
 
 ![Architecture](images/awsorganization.png)
 
-
 ----
+## Step 4 – Create AWS Accounts
+
+Inside Organizations
+
+Create :  CloudAdhar-Dev
+
+![Architecture](images/createawsaccount.jpg)
+
+Move to : Dev-OU
+
+![Architecture](images/account.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Dev-OU SCP Attached Policies.
 
 ![Architecture](images/devou.png)

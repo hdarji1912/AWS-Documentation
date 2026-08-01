@@ -131,8 +131,30 @@ It is only used for:
 - Central Governance
 
 Never deploy production applications here.
+---
 
---
+## Step 6 – Enable IAM Identity Center
 
+Go to :
+IAM Identity Center
 
+Click :
+Enable
+
+AWS creates :
+Identity Store
+
+↓
+
+Access Portal
+
+↓
+
+Permission Set Service
+
+# AWS Access Portal
+
+![Architecture](images/accessportal.png)
+
+---
 

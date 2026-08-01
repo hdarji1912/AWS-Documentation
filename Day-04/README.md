@@ -59,12 +59,12 @@ Imagine everyone works inside one AWS account.
 
 One AWS Account :
 
-Developer
-Tester
-DevOps
-Security
-Finance
-Production
+- Developer
+- Tester
+- DevOps
+- Security
+- Finance
+- Production
 
 
 ---

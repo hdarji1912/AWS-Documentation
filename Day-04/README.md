@@ -36,4 +36,10 @@ After completing this lab, I gained hands-on experience with:
 - Monitoring AWS spending and resource usage with AWS Cost Explorer.
 - Applying security guardrails to maintain compliance across multiple AWS accounts.
 
+---
 
+## 🏗️ Architecture
+
+![Architecture](images/architecture.png)
+
+---

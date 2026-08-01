@@ -87,7 +87,7 @@ Root
 
 Create : Dev-OU , Test-OU , Prod-OU
 
-# AWS Organization Hierarchy
+AWS Organization Hierarchy
 
 ![Architecture](images/awsorganization.png)
 

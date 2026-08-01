@@ -158,3 +158,41 @@ Permission Set Service
 
 ---
 
+## Step 7 – Login  
+
+Open :
+
+AWS Access Portal
+
+Choose :
+
+CloudAdhar-Dev
+
+Click :
+
+Management Console
+
+Now you're inside the Dev account.
+
+---
+
+## Step 8 – Verify STS Session
+
+Open CloudShell. 
+
+Run
+```bash
+aws sts get-caller-identity
+```
+
+Example :
+```json
+{
+ "Account":"123456789012",
+
+ "Arn":"arn:aws:sts::123456789012:assumed-role/AWSReservedSSO_CloudAdhar-Admin_xxxxx/cloudadhar-demo"
+}
+```
+![Architecture](images/devlogin.png)
+
+---

@@ -4,10 +4,6 @@ Hands-on AWS Lab demonstrating enterprise multi-account management using AWS Org
 
 ---
 
-# 📖 Overview
-
-Instead of running everything inside one AWS account, this lab shows how organizations separate workloads into different accounts while maintaining centralized governance, billing, and user access.
-
 ## 📚 Topics Covered
 
 - 🏢 AWS Organizations
@@ -84,14 +80,17 @@ Root
 Hierarchy :
 Root
 
-##  AWS Organization Structure 
+---
+## Step 3 – Create Organizational Units
+
+Create : Dev-OU , Test-OU , Prod-OU
 
 # AWS Organization Hierarchy
 
 ![Architecture](images/awsorganization.png)
 
----
 
+----
 ## Dev-OU SCP Attached Policies.
 
 ![Architecture](images/devou.png)
@@ -109,18 +108,3 @@ Root
 
 
 
-# 📖 Overview
-
-Instead of running everything inside one AWS account, this lab shows how organizations separate workloads into different accounts while maintaining centralized governance, billing, and user access.
-
-## 📚 Topics Covered
-
-- 🏢 AWS Organizations
-- 📂 Organizational Units (OUs)
-- 🛡️ Service Control Policies (SCPs)
-- 👥 AWS IAM Identity Center
-- 🔐 AWS STS Temporary Credentials
-- 🔄 Cross-Account Access
-- 💳 Consolidated Billing
-- 📊 AWS Cost Explorer
-- 🚧 Security Guardrails

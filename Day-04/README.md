@@ -241,8 +241,33 @@ Allowed
 
 ![Architecture](images/cloudshell.png)
 
+## Deleted the Test Bucket
+
+```bash
+
+aws s3api delete-bucket --bucket "$BUCKET" --region "$AWS_REGION"
+
+aws s3api head-bucket --bucket "$BUCKET"
+```
+# S3 Bucket Deleted
+
+![Architecture](images/s3cloudshell.png)
+
 ---
+## Step 10 – Create an SCP
 
+Management Account 
 
+Go to
 
+Organizations
 
+↓
+
+Policies
+
+↓
+
+Service Control Policies
+
+Create

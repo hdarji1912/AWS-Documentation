@@ -37,12 +37,6 @@ After completing this lab, I gained hands-on experience with:
 - Applying security guardrails to maintain compliance across multiple AWS accounts.
 
 ---
-
-## 🏗️ Architecture
-
-![Architecture](images/architecture.png)
-
----
 ## AWS Organizations  with SCP
 
 ![Architecture](images/scp.png)
@@ -54,4 +48,38 @@ After completing this lab, I gained hands-on experience with:
 ![Architecture](images/s3.png)
 
 ---
+## Step 1 – Understand the Problem
+
+Imagine everyone works inside one AWS account.
+
+## 🏗️ Architecture
+
+![Architecture](images/architecture.png)
+
+> One AWS Account
+
+Developer
+Tester
+DevOps
+Security
+Finance
+Production
+>
+
+
+
+
+---
+---
+## Step -1 AWS Organization Structure 
+
+Verified the AWS Organization structure, Organizational Unit, and attached Service Control Policy.
+
+# AWS Organization Hierarchy
+
+![Architecture](images/awsorganization.png)
+
+## Dev-OU SCP Attached Policies.
+
+![Architecture](images/devou.png)
 

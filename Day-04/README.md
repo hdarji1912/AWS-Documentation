@@ -37,17 +37,6 @@ After completing this lab, I gained hands-on experience with:
 - Applying security guardrails to maintain compliance across multiple AWS accounts.
 
 ---
-## AWS Organizations  with SCP
-
-![Architecture](images/scp.png)
-
----
-
-## S3 Bucket Permisssion 
-
-![Architecture](images/s3.png)
-
----
 ## Step 1 – Understand the Problem
 
 Imagine everyone works inside one AWS account.
@@ -77,16 +66,61 @@ This does not scale.
 ![Architecture](images/architecture.png)
 
 ---
----
-## Step -1 AWS Organization Structure 
+## Step 2 – Create AWS Organization
 
-Verified the AWS Organization structure, Organizational Unit, and attached Service Control Policy.
+Open: 
+AWS Console
+
+↓
+
+AWS Organizations
+
+Click :
+Create Organization
+
+AWS creates :
+Root
+
+Hierarchy :
+Root
+
+##  AWS Organization Structure 
 
 # AWS Organization Hierarchy
 
 ![Architecture](images/awsorganization.png)
 
+---
+
 ## Dev-OU SCP Attached Policies.
 
 ![Architecture](images/devou.png)
 
+
+## AWS Organizations  with SCP
+
+![Architecture](images/scp.png)
+
+---
+
+## S3 Bucket Permisssion 
+
+![Architecture](images/s3.png)
+
+
+
+# 📖 Overview
+
+Instead of running everything inside one AWS account, this lab shows how organizations separate workloads into different accounts while maintaining centralized governance, billing, and user access.
+
+## 📚 Topics Covered
+
+- 🏢 AWS Organizations
+- 📂 Organizational Units (OUs)
+- 🛡️ Service Control Policies (SCPs)
+- 👥 AWS IAM Identity Center
+- 🔐 AWS STS Temporary Credentials
+- 🔄 Cross-Account Access
+- 💳 Consolidated Billing
+- 📊 AWS Cost Explorer
+- 🚧 Security Guardrails

@@ -3,7 +3,6 @@ Learn the difference between IAM Trust Policy and Permission Policy by performin
 
 This lab demonstrates how an IAM User can securely assume an IAM Role to obtain temporary credentials and access AWS resources following the Principle of Least Privilege (PoLP).
 ---
-
 # 📌 Introduction
 
 AWS Identity and Access Management (IAM) provides secure access to AWS resources.

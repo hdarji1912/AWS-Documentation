@@ -270,4 +270,27 @@ Policies
 
 Service Control Policies
 
-Create
+create policy :
+
+![Architecture](images/servicepolicy.jpg)
+
+# Create New Policy :
+
+![Architecture](images/createnewpolicy.jpg)
+
+## Example :
+
+```json
+{
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Sid":"DenyS3BucketCreation",
+      "Effect":"Deny",
+      "Action":"s3:CreateBucket",
+      "Resource":"*"
+    }
+  ]
+}
+```
+---

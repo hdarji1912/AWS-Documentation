@@ -89,8 +89,36 @@ Create : Dev-OU , Test-OU , Prod-OU
 
 ![Architecture](images/awsorganization.png)
 
-
 ----
+## Step 4 – Create AWS Accounts
+
+Inside Organizations
+
+Create :  CloudAdhar-Dev
+Move to : 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Dev-OU SCP Attached Policies.
 
 ![Architecture](images/devou.png)

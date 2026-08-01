@@ -289,4 +289,73 @@ create policy :
 
 ![Architecture](images/scp.png)
 
+## Created SCP Policy 
+
+![Architecture](images/createdpolicy.jpg)
+
 ---
+
+## Step 11 – Attach the SCP
+
+Attach to :
+Dev-OU 
+
+Now every account inside Dev-OU inherits this guardrail.
+Root
+
+└── Dev-OU
+
+      SCP
+
+      ↓
+
+CloudAdhar-Dev
+
+Policy Attach :
+
+![Architecture](images/attachpolicy.jpg)
+
+---
+## Step 12 – Create an S3 Bucket with SCP 
+
+Run in cloudshell :
+
+```bash
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+
+BUCKET="cloudadhar-before-scp-${ACCOUNT_ID}-$(date +%s)"
+
+aws s3api create-bucket \
+--bucket "$BUCKET" \
+--region ap-south-1 \
+--create-bucket-configuration LocationConstraint=ap-south-1
+```
+Result :
+
+AccessDenied
+
+Reason  :
+
+Permission Set
+
+↓
+
+AdministratorAccess
+
+↓
+
+SCP
+
+↓
+
+Explicit Deny
+
+↓
+
+Final Result
+
+Denied
+
+
+
+

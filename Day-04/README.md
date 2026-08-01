@@ -57,7 +57,7 @@ Imagine everyone works inside one AWS account.
 ![Architecture](images/architecture.png)
 
 
-One AWS Account
+One AWS Account :
 
 Developer
 Tester
@@ -65,9 +65,6 @@ DevOps
 Security
 Finance
 Production
-
-
-
 
 
 ---

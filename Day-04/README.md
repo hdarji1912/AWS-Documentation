@@ -52,11 +52,6 @@ After completing this lab, I gained hands-on experience with:
 
 Imagine everyone works inside one AWS account.
 
-## 🏗️ Architecture
-
-![Architecture](images/architecture.png)
-
-
 One AWS Account :
 
 - Developer
@@ -66,6 +61,20 @@ One AWS Account :
 - Finance
 - Production
 
+Problems:
+
+- Developer accidentally deletes Production resources.
+- Testing increases Production costs.
+- Everyone receives Administrator permissions.
+- Difficult auditing.
+- Difficult billing.
+- Difficult security.
+
+This does not scale.
+
+## 🏗️ Architecture
+
+![Architecture](images/architecture.png)
 
 ---
 ---

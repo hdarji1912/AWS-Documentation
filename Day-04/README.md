@@ -105,26 +105,6 @@ Move to : Dev-OU
 ![Architecture](images/account.png)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Dev-OU SCP Attached Policies.
 
 ![Architecture](images/devou.png)
@@ -135,10 +115,24 @@ Move to : Dev-OU
 ![Architecture](images/scp.png)
 
 ---
+## Step 5 – Understand the Management Account
 
-## S3 Bucket Permisssion 
+The Management Account should not run workloads.
 
-![Architecture](images/s3.png)
+![Architecture](images/awsmanagementaccount.jpg)
+
+It is only used for:
+
+- AWS Organizations
+- SCP Management
+- Billing
+- Cost Explorer
+- Identity Center
+- Central Governance
+
+Never deploy production applications here.
+
+--
 
 
 

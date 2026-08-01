@@ -104,16 +104,6 @@ Move to : Dev-OU
 
 ![Architecture](images/account.png)
 
-
-## Dev-OU SCP Attached Policies.
-
-![Architecture](images/devou.png)
-
-
-## AWS Organizations  with SCP
-
-![Architecture](images/scp.png)
-
 ---
 ## Step 5 – Understand the Management Account
 
@@ -131,6 +121,7 @@ It is only used for:
 - Central Governance
 
 Never deploy production applications here.
+
 ---
 
 ## Step 6 – Enable IAM Identity Center
@@ -270,4 +261,178 @@ Policies
 
 Service Control Policies
 
-Create
+create policy :
+
+![Architecture](images/servicepolicy.jpg)
+
+# Create New Policy :
+
+![Architecture](images/createnewpolicy.jpg)
+
+## Example :
+
+```json
+{
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Sid":"DenyS3BucketCreation",
+      "Effect":"Deny",
+      "Action":"s3:CreateBucket",
+      "Resource":"*"
+    }
+  ]
+}
+```
+
+## AWS Organizations  with SCP
+
+![Architecture](images/scp.png)
+
+## Created SCP Policy 
+
+![Architecture](images/createdpolicy.jpg)
+
+---
+
+## Step 11 – Attach the SCP
+
+Attach to :
+Dev-OU 
+
+Now every account inside Dev-OU inherits this guardrail.
+Root
+
+└── Dev-OU
+
+      SCP
+
+      ↓
+
+CloudAdhar-Dev
+
+Policy Attach :
+
+![Architecture](images/attachpolicy.jpg)
+
+---
+## Step 12 – Create an S3 Bucket with SCP 
+
+Run in cloudshell :
+
+```bash
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+
+BUCKET="cloudadhar-before-scp-${ACCOUNT_ID}-$(date +%s)"
+
+aws s3api create-bucket \
+--bucket "$BUCKET" \
+--region ap-south-1 \
+--create-bucket-configuration LocationConstraint=ap-south-1
+```
+Result :
+
+The bucket creation request failed with:
+
+AccessDenied
+Explicit deny in a Service Control Policy
+s3:CreateBucket operation denied
+
+# SCP Deny S3 Bucket Creation
+
+![Architecture](images/s3cloudshellbucket.png)
+
+This confirms that the Service Control Policy overrides IAM permissions granted through the CloudAdhar-Dev permission set.
+
+Permission Set
+
+↓
+
+AdministratorAccess
+
+↓
+
+SCP
+
+↓
+
+Explicit Deny
+
+↓
+
+Final Result  :  Denied
+
+---
+## Step 13 – Cross-Account Access (Optional Extension)
+
+Create another member account (for example, CloudAdhar-Test).
+
+In the Test account:
+
+Create an IAM role named DeveloperRole.
+Configure its trust policy to allow the Dev account to assume it.
+Attach appropriate permissions (for example, read-only access).
+
+From the Dev account:
+
+```bash
+aws sts assume-role \
+  --role-arn arn:aws:iam::<TestAccountID>:role/DeveloperRole \
+  --role-session-name DemoSession
+```
+AWS returns temporary credentials that let you operate in the Test account without creating another IAM user.
+---
+
+## Step 14 – Consolidated Billing
+
+Open :
+Billing
+
+↓
+
+Cost Explorer
+
+# Billing
+
+![Architecture](images/billing.png)
+
+You'll see:
+
+Charges from all linked member accounts.
+Costs grouped by account.
+Organization-wide spending.
+Centralized payment from the Management account.
+
+Benefits include:
+
+One invoice for the organization.
+Easier cost tracking.
+Shared eligible usage-based pricing benefits across accounts.
+
+---
+
+## 🔒 Security Best Practices
+
+- Use multiple AWS accounts.
+- Keep workloads out of the Management Account.
+- Use Organizational Units for logical separation.
+- Assign access using IAM Identity Center.
+- Prefer Groups over individual user assignments.
+- Enable MFA.
+- Use temporary credentials.
+- Follow the Principle of Least Privilege.
+- Test SCPs in a dedicated OU before production rollout.
+- Never attach experimental SCPs directly to the Root.
+
+---
+
+👨‍💻 Author
+
+Hardik Darji
+
+---
+
+⭐ If you found this project useful
+
+Please consider giving this repository a ⭐ Star to support the project and help others learn AWS Organizations, SCPs, IAM Identity Center, and enterprise multi-account governance.
+

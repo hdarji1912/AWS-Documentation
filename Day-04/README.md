@@ -195,4 +195,54 @@ Example :
 ```
 ![Architecture](images/devlogin.png)
 
+Notice : assumed-role
+
+That means you are not using long-term IAM user credentials.
+
+You're using temporary STS credentials.
+
 ---
+## Step 9 – Create an S3 Bucket without SCP
+
+Generated a unique Amazon S3 bucket name and successfully created the bucket while the member account was under the Root of the AWS Organization.
+
+Run in cloudshell: 
+```bash
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+
+BUCKET="cloudadhar-before-scp-${ACCOUNT_ID}-$(date +%s)"
+
+aws s3api create-bucket \
+--bucket "$BUCKET" \
+--region ap-south-1 \
+--create-bucket-configuration LocationConstraint=ap-south-1
+```
+Result :
+
+Bucket Created
+
+Reason :
+
+Permission Set
+
+↓
+
+AdministratorAccess
+
+↓
+
+No SCP
+
+↓
+
+Allowed
+
+# S3 Bucket creted without SCP
+
+![Architecture](images/cloudshell.png)
+
+---
+
+
+
+

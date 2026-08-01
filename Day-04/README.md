@@ -104,16 +104,6 @@ Move to : Dev-OU
 
 ![Architecture](images/account.png)
 
-
-## Dev-OU SCP Attached Policies.
-
-![Architecture](images/devou.png)
-
-
-## AWS Organizations  with SCP
-
-![Architecture](images/scp.png)
-
 ---
 ## Step 5 – Understand the Management Account
 
@@ -293,4 +283,9 @@ create policy :
   ]
 }
 ```
+
+## AWS Organizations  with SCP
+
+![Architecture](images/scp.png)
+
 ---

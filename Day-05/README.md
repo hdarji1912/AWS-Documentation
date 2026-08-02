@@ -61,3 +61,5 @@ Attached IGW :
 ![VPC](images/attachedigw.jpg)
 
 ---
+## Step 4 — Main Route Table
+

@@ -81,8 +81,11 @@ Set main route :
 ---
 ## Step 6 — Add Internet Route to public
 
+Add IGW to Public :
 ![VPC](images/igwpublic.jpg)
 
+IGW in Public :
+![VPC](images/setigwrouteinpublic.jpg)
 
 ---
 ## Step 7 — Associate Public Subnets
@@ -100,9 +103,37 @@ Set main route :
 ![VPC](images/privatesubnetassociation.jpg)
 
 ---
-## 
+## Step 10 — Verify Resource Map in VPC
+
+![VPC](images/vpcflow.jpg)
 
 
+Verify:
 
+- One VPC
+- Internet Gateway attached
+- Two Availability Zones
+- Two Public Subnets
+- Two Private Subnets
+- Public Route Table
+- Private Route Table
 
+---
+
+## 🎯 Key Takeaways
+
+- Understood the purpose of Amazon VPC.
+- Learned how CIDR blocks define network address ranges.
+- Planned scalable IP addressing using CIDR.
+- Created public and private subnet architecture.
+- Configured route tables for traffic routing.
+- Attached an Internet Gateway to enable internet connectivity.
+- Designed a secure VPC architecture following AWS networking best practices.
+
+---
+👨‍💻 Author
+
+Hardik Darji
+---
+⭐ If you found this repository helpful, consider giving it a Star and following my AWS & DevOps learning journey!
 

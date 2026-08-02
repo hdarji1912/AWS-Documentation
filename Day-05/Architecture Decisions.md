@@ -1,4 +1,5 @@
 ## Architecture Decisions
+
 ---
 
 ## 🌐 Why Separate Public and Private Subnets?

@@ -13,7 +13,6 @@ The goal of this lab was to:
 * Prepare a production-ready cloud account foundation
 
 ---
-
 ## AWS Account Creation
 
 ### Step 1 – Open AWS Signup

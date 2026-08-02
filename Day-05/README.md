@@ -32,3 +32,32 @@ Create VPC :
 VPC name & IPv4 CIDR :
 ![VPC](images/vpcname.jpg)
 
+VPC Created :
+![VPC](images/vpccreated.jpg)
+
+---
+## Step 2 — Create Public Subnet
+
+Public Subnet :
+![VPC](images/createpublic1sub.jpg)
+
+
+Enable Auto Assign Public IPv4 :
+![VPC](images/editsubnet.jpg)
+
+Public and Private Subnet :
+![VPC](images/allsubnet.jpg)
+
+---
+## Step 3 — Create Internet Gateway
+
+Create IGW :
+![VPC](images/createigw.jpg)
+
+Attach Internet Gateway :
+![VPC](images/attachigw.jpg)
+
+Attached IGW :
+![VPC](images/attachedigw.jpg)
+
+---

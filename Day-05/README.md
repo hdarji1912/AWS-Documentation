@@ -23,5 +23,10 @@ You will learn:
 
 ![Architecture](architecture/architecture.png)
 
+---
+## Step 1 — Create Custom VPC
 
-```
+Create VPC :
+![VPC](images/createvpc.jpg)
+
+

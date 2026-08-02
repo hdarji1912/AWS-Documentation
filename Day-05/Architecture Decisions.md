@@ -1,4 +1,5 @@
-# 🏗️ Architecture Decisions
+## Architecture Decisions
+---
 
 ## 🌐 Why Separate Public and Private Subnets?
 
@@ -11,7 +12,7 @@ This separation follows the **Principle of Least Privilege (PoLP)** by exposing 
 
 ---
 
-## 🛣️ Why Use Separate Route Tables?
+##  Why Use Separate Route Tables?
 
 Separate route tables provide different routing policies for public and private subnets.
 
@@ -36,7 +37,7 @@ This design improves security while maintaining internal communication within th
 
 ---
 
-## 🌍 Why Deploy Resources Across Two Availability Zones?
+##  Why Deploy Resources Across Two Availability Zones?
 
 Resources are distributed across **two Availability Zones (AZs)** to improve application reliability and fault tolerance.
 
@@ -52,7 +53,7 @@ If one Availability Zone experiences an outage, resources in the second Availabi
 
 ---
 
-## 📐 Why Use a /16 VPC CIDR with /24 Subnets?
+##  Why Use a /16 VPC CIDR with /24 Subnets?
 
 The VPC uses the CIDR block **10.10.0.0/16**, providing a large private IP address space.
 
@@ -70,7 +71,7 @@ This design follows AWS networking best practices for scalable environments.
 
 ---
 
-## 📋 Why Keep the Main Route Table Local-Only?
+##  Why Keep the Main Route Table Local-Only?
 
 The **Main Route Table** is left with only the default local route.
 

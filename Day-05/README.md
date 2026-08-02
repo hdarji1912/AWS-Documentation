@@ -29,4 +29,6 @@ You will learn:
 Create VPC :
 ![VPC](images/createvpc.jpg)
 
+VPC name & IPv4 CIDR :
+![VPC](images/vpcname.jpg)
 

@@ -54,6 +54,9 @@ Public and Private Subnet :
 Create IGW :
 ![VPC](images/createigw.jpg)
 
+IGW  Name:
+![VPC](images/igwname.jpg)
+
 Attach Internet Gateway :
 ![VPC](images/attachigw.jpg)
 
@@ -62,4 +65,44 @@ Attached IGW :
 
 ---
 ## Step 4 — Main Route Table
+
+Create Main Route :
+![VPC](images/publicroutename.jpg)
+
+Set main route :
+![VPC](images/setmain.jpg)
+
+
+--- 
+## Step 5 — Create Public Route Table
+
+![VPC](images/publicroutename.jpg)
+
+---
+## Step 6 — Add Internet Route to public
+
+![VPC](images/igwpublic.jpg)
+
+
+---
+## Step 7 — Associate Public Subnets
+
+![VPC](images/savedpublicassociation.jpg)
+
+---
+## Step 8  — Create Private Route Table & Keep Local Route Only
+
+![VPC](images/privatesubnet.jpg)
+
+---
+## Step 9 — Associate Private Subnets
+
+![VPC](images/privatesubnetassociation.jpg)
+
+---
+## 
+
+
+
+
 

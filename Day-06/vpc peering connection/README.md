@@ -45,9 +45,7 @@ The lab includes the creation of two VPCs, private subnets, route tables, securi
 
 ## VPC Peering Connection Steps :
 
-## Step 1
-
-Create **Test VPC**
+## Step 1 : Create **Test VPC**
 
 ```
 Name : test-vpc
@@ -58,9 +56,7 @@ CIDR : 10.0.0.0/16
 
 ---
 
-## Step 2
-
-Create **Production VPC**
+## Step 2 : Create **Production VPC**
 
 ```
 Name : prod-vpc
@@ -75,39 +71,122 @@ CIDR : 12.0.0.0/16
 
 ---
 
-## Step 3
+## Step 3 — Create Internet Gateway (Test)
 
-Create Internet Gateways
+![vpc](images/4.jpg)
 
-| Name |
-|------|
-| test-igw |
-| prod-igw |
-
-Attach each Internet Gateway to its respective VPC.
-
-📷 Screenshot
+Actions → Attach to VPC :
+Select
 
 ```
-images/03-internet-gateway.png
+test-vpc
 ```
+Attach.
+
 
 ---
 
-## Step 4
+## Step 4 — Create Internet Gateway (Prod)
 
-Create Private Subnets
+![vpc](images/5.jpg)
 
-| Name | CIDR |
-|------|------|
-| test-private-subnet-1a | 10.0.1.0/24 |
-| prod-private-subnet-1a | 12.0.1.0/24 |
-
-📷 Screenshot
+Actions → Attach to VPC :
+Select
 
 ```
-images/04-private-subnets.png
+prod-vpc
 ```
+Attach.
+
+----
+
+## Step 5 — Create Private Subnet (Test)
+
+```
+VPC
+test-vpc
+
+Subnet Name
+test-subnet
+
+Availability Zone
+eu-north-1a
+
+CIDR
+10.0.1.0/24
+```
+
+![vpc](images/6.jpg)
+
+
+---
+
+## Step 6 — Create Private Subnet (Prod)
+
+```
+VPC
+prod-vpc
+
+Subnet Name
+prod-subnet
+
+Availability Zone
+eu-north-1b
+
+CIDR
+12.0.1.0/24
+```
+
+![vpc](images/7.jpg)
+
+## Created test and prod subnet :
+
+![vpc](images/8.jpg)
+
+---
+## Step 7 — Create Route Table (Test)
+
+```
+Name
+test-rt
+
+VPC
+test-vpc
+```
+create  route table :
+
+![vpc](images/9.jpg)
+
+Edit route table :
+
+![vpc](images/10.jpg)
+
+Associate subnet :
+
+![vpc](images/11.jpg)
+
+---
+## Step 8 — Create Route Table (Prod)
+
+```
+Name
+prod-rt
+
+VPC
+test-vpc
+```
+create  route table :
+
+![vpc](images/12.jpg)
+
+Edit route table :
+
+![vpc](images/13.jpg)
+
+Associate subnet :
+
+![vpc](images/14.jpg)
+
 
 ---
 

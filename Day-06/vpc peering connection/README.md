@@ -187,59 +187,75 @@ Associate subnet :
 
 ![vpc](images/14.jpg)
 
-
 ---
 
-## Step 5
+## Step 9 - Launch EC2 Instances
 
-Create Route Tables
-
-| Name |
-|------|
-| test-private-rt |
-| prod-private-rt |
-
-Associate each route table with its private subnet.
-
-📷 Screenshot
+## Test EC2 :
 
 ```
-images/05-route-table.png
+Name
+test-ec2-instance
+
+AMI
+ubuntu
+
+Instance Type
+t3.micro
+
+Network
+test-vpc
+
+Subnet
+test-subnet
+
+Security Group
+test-sg
 ```
 
----
+![vpc](images/15.jpg)
 
-## Step 6
+## Production Server :
 
-Launch EC2 Instances
-
-| Name | Subnet |
-|------|--------|
-| test-server | test-private-subnet-1a |
-| prod-server | prod-private-subnet-1a |
-
-📷 Screenshot
 
 ```
-images/06-ec2.png
+Name
+prod-ec2-instance
+
+AMI
+ubuntu
+
+Instance Type
+t3.micro
+
+Network
+prod-vpc
+
+Subnet
+prod-subnet
+
+Security Group
+prod-sg
 ```
 
----
-
-## Step 7
-
-Create Security Groups
+## Create Security Groups
 
 Allow:
 
 - SSH (22) from your IP
-- ICMP from the opposite VPC CIDR
+- HTTP (80) 
 
-📷 Screenshot
+![vpc](images/16.jpg)
 
-```
-images/07-security-group.png
-```
+
+| Name | Subnet |
+|------|--------|
+| test-ec2-instance | test-subnet |
+| prod-ec2-instance | prod-subnet |
+
+![vpc](images/17.jpg)
+
+
 
 ---
 

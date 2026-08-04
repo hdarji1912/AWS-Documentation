@@ -173,7 +173,7 @@ Name
 prod-rt
 
 VPC
-test-vpc
+prod-vpc
 ```
 create  route table :
 

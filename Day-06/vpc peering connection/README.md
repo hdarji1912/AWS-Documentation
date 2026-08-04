@@ -1,6 +1,6 @@
 ## AWS VPC Peering Connection
 
-## 📌 Project Overview
+##  Project Overview
 
 This project demonstrates how to establish secure private communication between two Amazon Virtual Private Clouds (VPCs) using **AWS VPC Peering**. The implementation enables EC2 instances in separate VPCs to communicate over the AWS private network without traversing the public internet.
 
@@ -247,6 +247,7 @@ Allow:
 
 ![vpc](images/16.jpg)
 
+## Created EC2 Instance :
 
 | Name | Subnet |
 |------|--------|
@@ -259,48 +260,49 @@ Allow:
 
 ---
 
-## Step 8
+## Step 10 -Create VPC Peering Connection
 
-Create VPC Peering Connection
+Fill in:
 
 ```
 Name
-
 test-prod-vpc-peering
-```
 
-Requester
-
-```
+Requester VPC
 test-vpc
-```
 
-Accepter
-
-```
+Accepter VPC
 prod-vpc
+
+Account
+My Account
+
+Region
+Same Region
+
 ```
 
-Accept the request.
-
-📷 Screenshot
-
-```
-images/08-vpc-peering.png
-```
+![vpc](images/18.jpg)
 
 ---
+## Step 11 — Accept Peering Request
 
-## Step 9
+accepting request :
+![vpc](images/19.jpg)
 
-Update Route Tables
+Request accepted :
+![vpc](images/20.jpg)
+
+---
+## Step 12 - Update Route Tables
 
 ### Test Route Table
 
 | Destination | Target |
 |-------------|--------|
-|10.0.0.0/16|Local|
 |12.0.0.0/16|test-prod-vpc-peering|
+
+![vpc](images/21.jpg)
 
 ---
 
@@ -308,26 +310,21 @@ Update Route Tables
 
 | Destination | Target |
 |-------------|--------|
-|12.0.0.0/16|Local|
 |10.0.0.0/16|test-prod-vpc-peering|
 
-📷 Screenshot
-
-```
-images/09-route-update.png
-```
+![vpc](images/22.jpg)
 
 ---
 
-## Step 10
-
-Verify Connectivity
+## Step 13 - Verify Connectivity
 
 SSH into one EC2 instance and ping the private IP of the other instance.
 
 ```bash
 ping 12.0.1.x
 ```
+
+![vpc](images/23.jpg)
 
 ```bash
 ping 10.0.1.x
@@ -339,11 +336,8 @@ Expected Result
 64 bytes from 12.0.1.x
 ```
 
-📷 Screenshot
 
-```
-images/10-connectivity-test.png
-```
+![vpc](images/24.jpg)
 
 ---
 
@@ -364,22 +358,6 @@ images/10-connectivity-test.png
 - No edge-to-edge routing.
 - Peering connections are non-hierarchical.
 - Route tables must be updated manually.
-
----
-
-# ✅ Verification Checklist
-
-- [x] Test VPC created
-- [x] Production VPC created
-- [x] Internet Gateways attached
-- [x] Private Subnets created
-- [x] Route Tables configured
-- [x] Security Groups configured
-- [x] EC2 instances launched
-- [x] VPC Peering Connection created
-- [x] Peering request accepted
-- [x] Routes updated
-- [x] Connectivity verified
 
 ---
 
@@ -425,7 +403,7 @@ Delete the resources in the following order:
 
 **Hardik Darji**
 
-AWS | DevOps | Cloud Engineer
+AWS | DevOps Engineer
 
 ---
 

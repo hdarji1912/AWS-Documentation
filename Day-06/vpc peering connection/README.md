@@ -43,7 +43,7 @@ The lab includes the creation of two VPCs, private subnets, route tables, securi
 
 ---
 
-# 🚀 Deployment Steps
+## VPC Peering Connection Steps :
 
 ## Step 1
 

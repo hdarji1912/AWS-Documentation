@@ -1,6 +1,6 @@
 ## 🔗AWS VPC Peering Connection
 
-##  Project Overview
+##  📖Project Overview
 
 This project demonstrates how to establish secure private communication between two Amazon Virtual Private Clouds (VPCs) using **AWS VPC Peering**. The implementation enables EC2 instances in separate VPCs to communicate over the AWS private network without traversing the public internet.
 

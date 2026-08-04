@@ -38,7 +38,7 @@ The lab includes the creation of two VPCs, private subnets, route tables, securi
 | Subnet CIDR | 10.0.1.0/24 | 12.0.1.0/24 |
 | Route Table | test-rt | prod-rt |
 | Internet Gateway | test-igw | prod-igw |
-| EC2 Instance | test-server | prod-server |
+| EC2 Instance | test-ec2-instance | prod-ec2-instance |
 | Security Group | test-sg | prod-sg |
 
 ---

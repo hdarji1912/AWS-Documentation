@@ -43,16 +43,6 @@ All VPCs are connected through a single AWS Transit Gateway.
 - Verify inter-VPC communication
 - Test private connectivity between EC2 instances
 
----
-
-# 📚 Services Used
-
-- Amazon VPC
-- AWS Transit Gateway
-- Amazon EC2
-- Internet Gateway
-- Route Tables
-- Security Groups
 
 ---
 
@@ -86,69 +76,68 @@ All VPCs are connected through a single AWS Transit Gateway.
 | Public Subnet | 30.0.1.0/24 |
 | EC2 | test-ec2 |
 
----
 
-# 🌍 Network Topology
-
-```
-                    AWS Region
-
-             +----------------------+
-             | AWS Transit Gateway  |
-             +----------+-----------+
-                        |
-      +-----------------+-----------------+
-      |                 |                 |
-      |                 |                 |
-+------------+   +--------------+   +------------+
-|Production  |   | Development  |   |   Test     |
-|VPC         |   | VPC          |   | VPC        |
-|10.0.0.0/16 |   |20.0.0.0/16   |   |30.0.0.0/16 |
-+------------+   +--------------+   +------------+
-      |                 |                 |
- Public EC2       Public EC2        Public EC2
-```
 
 ---
 
 # 🛠️ Implementation Steps
 
-## Step 1
+## Step 1 - Create Production VPC :
 
-Create Production VPC
+![vpc](images/1.jpg)
 
-- Internet Gateway
-- Public Subnet
-- Route Table
-- Public EC2
+Create Internet Gateway & attach to VPC  :
+
+![vpc](images/2.jpg)
+
+Create Public Subnet :
+
+![vpc](images/3.jpg)
+
+Create Route Table :
+
+![vpc](images/4.jpg)
+
+Edit route table :
+
+![vpc](images/5.jpg)
+
+Associate route table with subnet :
+
+![vpc](images/6.jpg)
+
+Create Public EC2
+
+![vpc](images/7.jpg)
+
+Security Group for EC2 :
+
+![vpc](images/8.jpg)
+
 
 ---
 
-## Step 2
+## Step 2 - Create Development VPC
 
-Create Development VPC
-
-- Internet Gateway
-- Public Subnet
-- Route Table
-- Public EC2
+- Create Internet Gateway & attach to VPC
+- Create Public Subnet for dev 
+- Create  Route Table  , Edit route and associate subnet 
+- Create Public EC2
 
 ---
 
-## Step 3
+## Step 3 - Create Test VPC
 
-Create Test VPC
-
-- Internet Gateway
-- Public Subnet
-- Route Table
-- Public EC2
+- Create Internet Gateway & attach to VPC
+- Create Public Subnet for test
+- Create  Route Table , Edit route and associate subnet 
+- Create Public EC2
 
 ---
 
-## Step 4
+## Step 4 - Create AWS Transit Gateway
 
-Create AWS Transit Gateway
+![vpc](images/10.jpg)
 
 Configure
 
@@ -157,25 +146,37 @@ Configure
 - Default Propagation
 - DNS Support
 
----
-
-## Step 5
-
-Create Transit Gateway Attachments
-
-Attach
-
-- Production VPC
-- Development VPC
-- Test VPC
+Crated Transit Gateway :
+![vpc](images/11.jpg)
 
 ---
 
-## Step 6
+## Step 5 - Create Transit Gateway Attachments
 
-Update Route Tables
+Attach :
 
-Production Route Table
+Crate Production TGW :
+
+![vpc](images/12.jpg)
+
+Create Development TGW :
+
+![vpc](images/13.jpg)
+
+Create Test TGW :
+
+![vpc](images/14.jpg)
+
+
+## Created Transit Gateway Attachments :
+
+![vpc](images/15.jpg)
+
+---
+
+## Step 6 - Update Route Tables
+
+## Production Route Table
 
 | Destination | Target |
 |------------|--------|
@@ -184,9 +185,12 @@ Production Route Table
 |30.0.0.0/16|Transit Gateway|
 |0.0.0.0/0|Internet Gateway|
 
+
+![vpc](images/16.jpg)
+
 ---
 
-Development Route Table
+## Development Route Table
 
 | Destination | Target |
 |------------|--------|
@@ -195,9 +199,12 @@ Development Route Table
 |30.0.0.0/16|Transit Gateway|
 |0.0.0.0/0|Internet Gateway|
 
+
+![vpc](images/17.jpg)
+
 ---
 
-Test Route Table
+## Test Route Table
 
 | Destination | Target |
 |------------|--------|
@@ -205,6 +212,68 @@ Test Route Table
 |10.0.0.0/16|Transit Gateway|
 |20.0.0.0/16|Transit Gateway|
 |0.0.0.0/0|Internet Gateway|
+
+
+![vpc](images/18.jpg)
+
+---
+## Private IP :
+
+![vpc](images/19.jpg)
+
+---
+## Step 7 : Test Connectivity
+
+## From Production EC2 :
+
+```bash
+ping <Development Private IP>
+ping <Test Private IP>
+```
+![vpc](images/21.jpg)
+
+Expected Result:
+
+```
+64 bytes from ...
+```
+
+Successful replies confirm Transit Gateway routing is functioning correctly.
+
+
+## From Development EC2 :
+
+```bash
+ping <Production Private IP>
+ping <Test Private IP>
+```
+![vpc](images/22.jpg)
+
+Expected Result:
+
+```
+64 bytes from ...
+```
+
+Successful replies confirm Transit Gateway routing is functioning correctly.
+
+
+## From Test EC2 :
+
+```bash
+ping <Production Private IP>
+ping <Development Private IP>
+```
+![vpc](images/20.jpg)
+
+Expected Result:
+
+```
+64 bytes from ...
+```
+
+Successful replies confirm Transit Gateway routing is functioning correctly.
+
 
 ---
 
@@ -237,110 +306,6 @@ Security Groups allow:
 - SSH (22) from your public IP
 - ICMP (Ping) for connectivity testing
 - Intra-VPC communication through Transit Gateway
-
----
-
-# 🧪 Validation
-
-Verify:
-
-- Production EC2 → Development EC2
-- Production EC2 → Test EC2
-- Development EC2 → Test EC2
-
-Run:
-
-```bash
-ping <Private-IP>
-```
-
-Expected Result:
-
-```
-64 bytes from ...
-```
-
-Successful replies confirm Transit Gateway routing is functioning correctly.
-
----
-
-# 📊 Resources Created
-
-| Resource | Count |
-|----------|------:|
-| VPC | 3 |
-| Public Subnets | 3 |
-| Internet Gateways | 3 |
-| Route Tables | 3 |
-| EC2 Instances | 3 |
-| Transit Gateway | 1 |
-| Transit Gateway Attachments | 3 |
-
----
-
-# 📸 Screenshots
-
-## AWS Transit Gateway
-
-```
-images/01-transit-gateway.png
-```
-
----
-
-## VPC Attachments
-
-```
-images/02-vpc-attachments.png
-```
-
----
-
-## Transit Gateway Route Table
-
-```
-images/03-tgw-route-table.png
-```
-
----
-
-## Production Route Table
-
-```
-images/04-production-route-table.png
-```
-
----
-
-## Development Route Table
-
-```
-images/05-development-route-table.png
-```
-
----
-
-## Test Route Table
-
-```
-images/06-test-route-table.png
-```
-
----
-
-## EC2 Instances
-
-```
-images/07-ec2-instances.png
-```
-
----
-
-## Ping Test
-
-```
-images/08-connectivity-test.png
-```
 
 ---
 
@@ -385,7 +350,7 @@ Delete resources in the following order:
 
 **Hardik Darji**
 
-AWS | DevOps | Cloud Computing Enthusiast
+AWS | DevOps Engineer
 
 ---
 

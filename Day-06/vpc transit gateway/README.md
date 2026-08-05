@@ -232,13 +232,6 @@ ping <Test Private IP>
 ```
 ![vpc](images/21.jpg)
 
-Expected Result:
-
-```
-64 bytes from ...
-```
-
-Successful replies confirm Transit Gateway routing is functioning correctly.
 
 
 ## From Development EC2 :
@@ -249,14 +242,6 @@ ping <Test Private IP>
 ```
 ![vpc](images/22.jpg)
 
-Expected Result:
-
-```
-64 bytes from ...
-```
-
-Successful replies confirm Transit Gateway routing is functioning correctly.
-
 
 ## From Test EC2 :
 
@@ -265,14 +250,6 @@ ping <Production Private IP>
 ping <Development Private IP>
 ```
 ![vpc](images/20.jpg)
-
-Expected Result:
-
-```
-64 bytes from ...
-```
-
-Successful replies confirm Transit Gateway routing is functioning correctly.
 
 
 ---

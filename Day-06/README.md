@@ -75,8 +75,7 @@ devops-igw
 
 After creation
 
-Attach to
-
+Attach to :
 devops-vpc
 
 ```

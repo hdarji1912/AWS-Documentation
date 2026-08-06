@@ -22,7 +22,6 @@ The architecture includes:
 The objective is to provide secure internet access for private workloads while keeping all management traffic inside the AWS network.
 
 ---
-
 # 🏗 Architecture
 
 ![Arhchitecture](images/architecture.png)

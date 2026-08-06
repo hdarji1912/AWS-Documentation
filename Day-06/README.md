@@ -416,7 +416,7 @@ Benefits
 - No Bastion Host
 - No Public IP
 - No SSH Keys
-- 
+  
 ```bash
 EC2
 

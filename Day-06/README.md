@@ -231,11 +231,74 @@ private-subnet-b
 ![VPC](images/14.jpg)
 
 ---
+## Step 11 - Allocate Elastic IP
 
+```bash
+Choose : VPC
 
+Elastic IP
 
+Allocate
 
+Name :
+nat-eip
+```
+---
+## Step 12 - Create NAT Gateway
 
+![VPC](images/15.jpg)
+
+```bash
+Create
+
+Name :
+devops-nat-gateway
+
+Subnet :
+public-subnet-a
+
+Elastic IP :
+nat-eip
+
+Wait until :
+Available
+```
+Nat Gateway :
+![VPC](images/16.jpg)
+
+---
+## Step 13 - Edit Private Route Tables
+
+```bash
+Private Route Table A
+
+edit routes
+
+Destination :
+0.0.0.0/0
+
+Target :
+nat-a
+
+Do same for :
+private-rt-b
+```
+---
+## Step 14 - Create Security Groups
+
+```bash
+Name :
+Web SG
+
+Inbound :
+
+Type | Port	 | Source
+HTTP |	80	 |Anywhere
+SSH	 |  22	 |My IP
+```
+![VPC](images/17.jpg)
+
+---
 
 
 

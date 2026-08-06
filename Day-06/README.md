@@ -649,7 +649,8 @@ Verify ACCEPT entries in CloudWatch Logs.
 ![VPC](images/39.jpg)
 
 ---
-##💡 Key Learnings
+
+## 💡 Key Learnings
 
 - Designing a highly available VPC architecture
 - Public vs Private subnet routing
@@ -700,6 +701,7 @@ Delete resources in the following order:
 14. Delete VPC
 
 ---
+
 ## 👨‍💻 Author
 
 **Hardik Darji**

@@ -286,6 +286,8 @@ private-rt-b
 ---
 ## Step 14 - Create Security Groups
 
+# Web SG
+
 ```bash
 Name :
 Web SG
@@ -293,13 +295,39 @@ Web SG
 Inbound :
 
 Type | Port	 | Source
-HTTP |	80	 |Anywhere
-SSH	 |  22	 |My IP
+HTTP |	80	 | Anywhere
+SSH	 |  22	 | My IP
 ```
 ![VPC](images/17.jpg)
 
 ---
+## Private SG
 
+```bash
+Name:
+private-sg
+
+Inbound  :
+
+Type     |  Source
+SSH	     |  web-sg
+All ICMP |	VPC
+```
+![VPC](images/18.jpg)
+
+---
+## Endpoint SG
+
+```bash
+Name:
+endpoint-sg
+
+Inbound :
+
+Type	     |     Source
+HTTPS 443	 |    private-sg
+```
+![VPC](images/19.jpg)
 
 
 

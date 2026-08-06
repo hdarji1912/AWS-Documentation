@@ -1,11 +1,8 @@
-# 🌐 Amazon VPC Part 2 – Secure AWS Network Architecture
+# 🌐 Amazon VPC Part 2 –  NAT Gateway · Security Groups vs NACLs · VPC Endpoints · Flow Logs
 
-> **Week 3 – Day 6 | AWS Networking & Security Hands-on Lab**
 
 ![AWS](https://img.shields.io/badge/AWS-VPC-orange?logo=amazonaws)
 ![EC2](https://img.shields.io/badge/Amazon-EC2-orange)
-![Networking](https://img.shields.io/badge/Networking-VPC-blue)
-![Status](https://img.shields.io/badge/Status-Completed-success)
 
 ---
 
@@ -33,13 +30,8 @@ The objective is to provide secure internet access for private workloads while k
 
 # 🏗 Architecture
 
-> Replace the image below with your architecture diagram.
+![Arhchitecture](images/architecture.png)
 
-```
-images/architecture.png
-```
-
----
 
 # 📌 AWS Services Used
 

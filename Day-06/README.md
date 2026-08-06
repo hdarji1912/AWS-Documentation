@@ -705,8 +705,7 @@ Delete resources in the following order:
 **Hardik Darji**
 
 DevOps Engineer 
+
 ---
 
-# ⭐ Outcome
-
-Successfully designed and deployed a secure, production-inspired AWS VPC architecture with private networking, outbound internet access via NAT Gateway, VPC Endpoints for secure AWS service connectivity, Session Manager for management access, and VPC Flow Logs for monitoring and troubleshooting.
+⭐ If you found this project helpful, please consider giving it a **Star** on GitHub!

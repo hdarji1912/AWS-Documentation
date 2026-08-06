@@ -437,7 +437,7 @@ Session Manager
 ```bash
 Inside Private EC2 Sessiona Manager
 
-curl google.com
+curl -I https://google.com
 
 Expected :
 HTML Response

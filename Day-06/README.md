@@ -216,14 +216,11 @@ private-subnet-a
 ```bash
 Create :
 private-rt-b
-```
-![VPC](images/13.jpg)
 
-```bash
 Associate :
 private-subnet-b
 ```
-![VPC](images/14.jpg)
+![VPC](images/13.jpg)
 
 ---
 ## Step 11 - Allocate Elastic IP
@@ -238,6 +235,8 @@ Allocate
 Name :
 nat-eip
 ```
+![VPC](images/14.jpg)
+
 ---
 ## Step 12 - Create NAT Gateway
 

@@ -1,7 +1,6 @@
 ## Day 7: Secure NGINX Golden Image Pipeline – Build, Test & Automate on AWS
 
 ---
-
 📌 Project Overview
 
 This project demonstrates two approaches for creating a secure and repeatable NGINX Golden AMI on AWS:

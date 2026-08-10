@@ -1,0 +1,19 @@
+name: DevOpsNginxTest
+description: Verify NGINX on the Image Builder test instance running Ubuntu.
+schemaVersion: 1.0
+
+phases:
+
+  - name: test
+    steps:
+
+      - name: TestNginxImage
+        action: ExecuteBash
+        inputs:
+          commands:
+            - systemctl is-enabled nginx
+            - systemctl start nginx
+            - systemctl is-active nginx
+            - nginx -t
+            - test -f /var/www/html/index.html
+            - curl -fsS http://localhost | grep -q "DevOps NGINX Golden AMI"

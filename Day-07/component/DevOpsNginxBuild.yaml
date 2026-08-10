@@ -1,0 +1,42 @@
+name: DevOpsNginxBuild
+description: Install and configure nginx on Ubuntu.
+schemaVersion: 1.0
+
+phases:
+
+  - name: build
+    steps:
+
+      - name: InstallAndConfigureNginx
+        action: ExecuteBash
+        inputs:
+          commands:
+            - apt-get update -y
+            - apt-get install -y nginx
+            - systemctl enable --now nginx
+            - |
+              cat > /usr/share/nginx/html/index.html <<'HTML'
+              <!DOCTYPE html>
+              <html>
+              <head>
+                  <title>Ubuntu Golden AMI</title>
+              </head>
+              <body>
+                  <h1>Ubuntu Golden AMI</h1>
+                  <h2>Ubuntu EC2 Image Builder Golden AMI</h2>
+                  <p>nginx was installed by a versioned Image Builder component.</p>
+              </body>
+              </html>
+              HTML
+
+  - name: validate
+    steps:
+
+      - name: ValidateNginxBuild
+        action: ExecuteBash
+        inputs:
+          commands:
+            - systemctl is-enabled nginx
+            - systemctl is-active nginx
+            - test -f /usr/share/nginx/html/index.html
+            - grep -q "Ubuntu EC2 Image Builder" /usr/share/nginx/html/index.html

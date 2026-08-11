@@ -720,6 +720,8 @@ TCP
 22
 My IP
 
+![vpc](images/ec2sg.jpg)
+
 ---
 ## Step 39: Create EFS Security Group
 
@@ -743,6 +745,8 @@ Port:
 
 Source:
 Custom → ec2-efs-client-sg
+
+![vpc](images/efssg.jpg)
 
 This is the recommended security-group pattern: allow NFS port 2049 on the EFS mount-target security group from the EC2 client's security group.
 
@@ -776,6 +780,8 @@ Launch EC2:
 Name:
 efs-client-01
 
+![vpc](images/ec2client1.jpg)
+
 ---
 ## Step 43: Launch EFS Client 2
 
@@ -784,10 +790,169 @@ Launch another EC2:
 Name:
 efs-client-02
 
+![vpc](images/ec2client2.jpg)
+
 ---
 ## Step 44: Install EFS Utilities
 
-SSH into efs-client-01.
+Connect SSM into efs-client-01.
 
 Run:
-sudo apt  install -y amazon-efs-utils
+sudo yum  install -y amazon-efs-utils
+
+![vpc](images/awsinstall.jpg)
+
+Connect SSM into efs-client-02.
+
+Run:
+sudo yum  install -y amazon-efs-utils
+sudo yum install python3-pip -y
+
+![vpc](images/awspythonclient2.jpg)
+
+---
+##  Step 45: Client -1 Validation
+
+![vpc](images/ec2ssmclient1.jpg)
+
+---
+## Step 46: Client -2 Validation
+
+![vpc](images/ec2ssmclient2.jpg)
+
+---
+
+## Part 7: Fast Snapshot Restore
+
+## Step 47 : Enable Fast Snapshot Restore
+
+Navigate to:
+
+EC2
+→ Snapshots
+
+Select:
+
+snap-gp3-data-01
+
+Choose:
+
+Actions
+→ Manage Fast Snapshot Restore
+
+Select the required Availability Zone.
+
+Enable FSR.
+
+![vpc](images/27.jpg)
+
+---
+## Step 48: Disable Fast Snapshot Restore
+
+After validation:
+
+Actions
+→ Manage Fast Snapshot Restore
+
+Disable it.
+
+![vpc](images/28.jpg)
+
+Verify:
+Disabled
+
+![vpc](images/29.jpg)
+
+---
+## ## 💡 Key Takeaways
+
+- **Amazon EBS** is ideal for **persistent block storage** attached to Amazon EC2 instances.
+
+- **Amazon EFS** is ideal when **multiple EC2 instances require shared file storage** with simultaneous read/write access.
+
+- **Amazon EBS Snapshots** provide **point-in-time recovery** and can be copied across AWS Regions for backup and disaster recovery.
+
+- **Amazon Data Lifecycle Manager (DLM)** can automate **recurring EBS snapshot creation and retention**, helping maintain consistent backup policies.
+
+- **EC2 Instance Store** provides **high-performance temporary storage** and should not be used for critical persistent data because its data is ephemeral.
+
+- **Cross-Region EBS Snapshot Copies** provide an important foundation for **disaster recovery**, allowing storage to be restored in another AWS Region during a regional failure.
+
+---
+## 🧹 Cleanup
+
+AWS resources can incur charges. Delete all resources after completing the lab.
+
+- EBS Cleanup
+- Unmount restored EBS volume.
+- Delete restored volume.
+- Delete snapshots.
+- Delete DR snapshots.
+- Delete original EBS volume.
+- Delete DLM policy.
+- Terminate storage EC2.
+- Delete unused Security Groups.
+- EFS Cleanup
+- Unmount EFS from both clients.
+- sudo umount /mnt/efs
+- Delete EFS mount targets.
+- Delete EFS filesystem.
+- Delete EFS Security Group.
+- Terminate both EFS client instances.
+- Placement Group Cleanup
+
+Delete:
+
+- pg-cluster-demo
+- pg-spread-demo
+- pg-partition-demo
+- Multi-Attach Cleanup
+- Detach io2 volume from both instances.
+- Delete io2 volume.
+- Terminate both Multi-Attach EC2 instances.
+- Instance Store Cleanup
+
+Terminate:
+ec2-instance-store-01
+
+---
+## 💰 Cost Awareness
+
+Before finishing the lab, verify that no unnecessary resources remain.
+
+Check:
+
+- EC2
+- EBS Volumes
+- EBS Snapshots
+- EFS
+- DLM
+- KMS
+
+Also check:
+
+AWS Billing → Cost Explorer
+
+Delete unused resources to avoid unexpected charges.
+
+---
+## 👨‍💻 Author
+
+**Hardik Darji**
+
+---
+
+⭐ **Support the Project**
+
+If you found this AWS lab useful, please consider **starring ⭐ the repository**.  
+Your support is greatly appreciated and motivates me to continue documenting my AWS learning journey.
+
+⭐ **Star the repository** | 🍴 **Fork it** | 📢 **Share it**
+
+---
+
+### 🚀 AWS Learning Journey
+
+**Day 8: Amazon EBS Persistence, EFS & Storage Recovery**
+
+Built with hands-on AWS practice and documented for continuous learning.

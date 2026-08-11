@@ -668,7 +668,125 @@ Create.
 ---
 ## Step 35: Create Subnet 1 & Subnet 2
 
-![vpc](images/20.jpg)
+![vpc](images/21.jpg)
 
 ---
+## Step 36: Create Internet Gateway
 
+Go to:
+
+VPC → Internet Gateways
+
+Create:
+prod-igw
+
+Attach it to:
+prod-vpc
+
+![vpc](images/22.jpg)
+
+---
+## Step 37: Create Route Table
+
+Go to:
+
+VPC → Create Route Tables
+
+Associate the route table with:
+public-subnet-1a
+public-subnet-1b
+
+![vpc](images/23.jpg)
+
+---
+## Step 38: Create EC2 Security Group
+
+Go to:
+EC2 → Security Groups
+
+Create:
+
+Name:
+ec2-efs-client-sg
+
+Description:
+EC2 security group for EFS clients
+
+Inbound rule:
+
+SSH
+TCP
+22
+My IP
+
+---
+## Step 39: Create EFS Security Group
+
+Create another security group:
+
+Name:
+efs-sg
+Description:
+Security group for EFS mount targets
+
+Add inbound rule:
+
+Type:
+NFS
+
+Protocol:
+TCP
+
+Port:
+2049
+
+Source:
+Custom → ec2-efs-client-sg
+
+This is the recommended security-group pattern: allow NFS port 2049 on the EFS mount-target security group from the EC2 client's security group.
+
+---
+## Step 40: Create EFS File System
+
+Go to:
+
+Amazon EFS → File systems → Create file system
+
+![vpc](images/24.jpg)
+
+---
+## Step 41: Configure EFS Mount Targets
+
+Open your EFS file system.
+
+![vpc](images/25.jpg)
+
+Go to:
+
+Network → Manage
+
+![vpc](images/26.jpg)
+
+---
+## Step 42: Launch EFS Client 1
+
+Launch EC2:
+
+Name:
+efs-client-01
+
+---
+## Step 43: Launch EFS Client 2
+
+Launch another EC2:
+
+Name:
+efs-client-02
+
+---
+## Step 44: Install EFS Utilities
+
+SSH into efs-client-01.
+
+Run:
+sudo apt  install -y amazon-efs-utils

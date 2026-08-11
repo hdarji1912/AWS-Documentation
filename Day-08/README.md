@@ -358,7 +358,6 @@ ebs-gp3-restored-01
 Click :
 Create volume
 ```
-![vpc](images/15.jpg)
 
 ---
 ## Step 18: Attach Restored Volume
@@ -378,6 +377,8 @@ Device:
 
 Click:
 Attach
+
+![vpc](images/15.jpg)
 
 ---
 

@@ -1156,7 +1156,7 @@ Instance: <hostname>
 
 ---
 
-# 38. Generate High CPU Load
+# 37. Generate High CPU Load
 
 Connect to the EC2 instance using Session Manager.
 
@@ -1177,7 +1177,7 @@ CPU utilization should increase significantly.
 
 ---
 
-# 39. Verify CloudWatch Alarm
+# 38. Verify CloudWatch Alarm
 
 Navigate to:
 
@@ -1191,7 +1191,7 @@ The target tracking policy uses CloudWatch metrics to determine whether addition
 
 ---
 
-# 40. Verify Scale-Out
+# 39. Verify Scale-Out
 
 The Auto Scaling Group should increase:
 
@@ -1218,7 +1218,7 @@ A second EC2 instance should automatically launch.
 
 ---
 
-# 41. Verify Two Healthy Targets
+# 40. Verify Two Healthy Targets
 
 Navigate to:
 
@@ -1238,7 +1238,7 @@ Both instances should be registered automatically by the Auto Scaling Group.
 
 ---
 
-# 42. Verify Load Balancing Across Instances
+# 41. Verify Load Balancing Across Instances
 
 The responses should show requests being served by different EC2 instances.
 
@@ -1255,7 +1255,7 @@ This confirms that the ALB is distributing traffic across healthy targets.
 
 ---
 
-# 43. Test Scale-In
+# 42. Test Scale-In
 
 Stop the CPU workload.
 
@@ -1288,7 +1288,7 @@ Verify under:
 
 ---
 
-# 44. Test Self-Healing
+# 43. Test Self-Healing
 
 Now intentionally create an application failure.
 
@@ -1314,7 +1314,7 @@ inactive
 
 ---
 
-# 45. Verify ALB Detects Unhealthy Instance
+# 44. Verify ALB Detects Unhealthy Instance
 
 The ALB health check requests:
 
@@ -1339,7 +1339,7 @@ Unhealthy
 
 ---
 
-# 46. Verify Auto Scaling Replacement
+# 45. Verify Auto Scaling Replacement
 
 The Auto Scaling Group detects the unhealthy instance through the configured health checks.
 
@@ -1374,7 +1374,7 @@ The desired capacity remains:
 
 ---
 
-# 47. Verify Replacement Instance
+# 46. Verify Replacement Instance
 
 ![VPC](images/33.jpg)
 
@@ -1396,7 +1396,7 @@ Security Group: devops-day9-web-sg
 
 ---
 
-# 48. Verify Replacement Target Health
+# 47. Verify Replacement Target Health
 
 Navigate to:
 
@@ -1413,7 +1413,7 @@ This confirms Auto Scaling self-healing.
 
 ---
 
-# 49. Final Validation
+# 48. Final Validation
 
 The following functionality was successfully validated:
 

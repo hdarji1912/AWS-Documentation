@@ -11,102 +11,26 @@ This project demonstrates how to build a secure and resilient Amazon S3 architec
 
 The implementation focuses on:
 
-* 🔐 Private S3 bucket security
-* 🔄 S3 Versioning and object recovery
-* 🔑 Customer-managed AWS KMS encryption
-* 🛡️ S3 Block Public Access
-* 🔗 Presigned URL temporary access
-* 📦 Bucket-to-bucket object replication/copy
-* ♻️ S3 Lifecycle Management
-* 🧹 Noncurrent version cleanup
-* 🗂️ Intelligent-Tiering and S3 Standard storage classes
-* 🔒 S3 Object Lock
-* ⚖️ Legal Hold protection
-* 🖥️ AWS CLI validation
+*  Private S3 bucket security
+*  S3 Versioning and object recovery
+*  Customer-managed AWS KMS encryption
+*  S3 Block Public Access
+*  Presigned URL temporary access
+*  Bucket-to-bucket object replication/copy
+*  S3 Lifecycle Management
+*  Noncurrent version cleanup
+*  Intelligent-Tiering and S3 Standard storage classes
+*  S3 Object Lock
+*  Legal Hold protection
+*  AWS CLI validation
 * 🧹 Complete AWS resource cleanup
 
 ---
 
 # 🏗️ Architecture
 
-**AWS Region:** `us-east-2 (Ohio)`
-
-### S3 Resources
-
-| Resource           | Name                                            |
-| ------------------ | ----------------------------------------------- |
-| Source Bucket      | `insight-data-raw-bucket-<unique-suffix>`       |
-| Destination Bucket | `insight-data-copy-bucket-<unique-suffix>`      |
-| Object Lock Bucket | `insight-data-legalhold-bucket-<unique-suffix>` |
-| KMS Key            | `alias/insight-data-s3-day11`                   |
-| Lifecycle Rule     | `logs-transition-and-cleanup`                   |
-
-### S3 Prefixes
-
-```text
-documents/
-versions/
-logs/
-storage/
-presigned/
-```
-
----
-
-# 📐 Architecture Flow
-
-```text
-                              AWS CLOUD
-                         Region: us-east-2
-                                |
-        +-----------------------+-----------------------+
-        |                       |                       |
-        v                       v                       v
-+-------------------+  +----------------------+  +----------------------+
-| Source Bucket     |  | Destination Bucket   |  | Object Lock Bucket   |
-|                   |  |                      |  |                      |
-| insight-data-     |  | insight-data-        |  | insight-data-        |
-| raw-bucket        |  | copy-bucket          |  | legalhold-bucket    |
-|                   |  |                      |  |                      |
-| Versioning        |  | Versioning           |  | Versioning           |
-| SSE-S3            |  | SSE-KMS              |  | Object Lock          |
-| Private           |  | S3 Bucket Key        |  | Legal Hold           |
-| Block Public      |  | Block Public         |  | Block Public         |
-| Access             |  | Access               |  | Access               |
-+---------+---------+  +----------+-----------+  +----------------------+
-          |                       |
-          | Object Copy           |
-          +---------------------->|
-          |
-          +--> Version 1
-          |
-          +--> Version 2
-          |
-          +--> Delete Marker
-          |
-          +--> Version 2 Recovered
-
-Private Object
-      |
-      +---- Normal Object URL ------> AccessDenied
-      |
-      +---- Presigned URL ----------> Temporary Access
-
-logs/
-  |
-  +---- 30 Days ------> Standard-IA
-  |
-  +---- 90 Days ------> Glacier Flexible Retrieval
-  |
-  +---- 365 Days -----> Delete
-
-Object Lock
-      |
-      +---- Legal Hold ON  -------> Delete Denied
-      |
-      +---- Legal Hold OFF ------> Version Can Be Deleted
-```
-
+![Architecture](images/architecture.png)
+ 
 ---
 
 # 🎯 Objectives
@@ -125,38 +49,6 @@ The objective of this lab is to implement an enterprise-style S3 storage workflo
 10. Object Lock Legal Hold protection
 11. AWS CLI-based validation
 12. Proper AWS resource cleanup
-
----
-
-# 🛠️ Prerequisites
-
-Before starting, make sure you have:
-
-* AWS account
-* IAM user or role with required permissions
-* AWS Management Console access
-* AWS CLI installed
-* AWS CLI authenticated
-* Git Bash / Terminal / CloudShell
-* Basic understanding of S3 and IAM
-
-Verify AWS CLI authentication:
-
-```bash
-aws sts get-caller-identity
-```
-
-Verify the AWS CLI region:
-
-```bash
-aws configure get region
-```
-
-For this lab, use:
-
-```text
-us-east-2
-```
 
 ---
 
@@ -249,6 +141,8 @@ can be selected.
 
 ## Create the Key
 
+![image](images/1.jpg)
+
 Review the configuration and create the key.
 
 Verify:
@@ -257,6 +151,7 @@ Verify:
 Key status: Enabled
 Alias: alias/insight-data-s3-day11
 ```
+![image](images/2.jpg)
 
 ---
 
@@ -324,6 +219,8 @@ Select:
 Bucket Versioning: Enable
 ```
 
+![image](images/4.jpg)
+
 ---
 
 ## Encryption
@@ -334,6 +231,7 @@ Select:
 Amazon S3 managed keys
 SSE-S3
 ```
+![image](images/5.jpg)
 
 Create the bucket.
 
@@ -361,6 +259,7 @@ Versioning: Enabled
 Object Ownership: Bucket owner enforced
 Default encryption: SSE-S3
 ```
+![image](images/6.jpg)
 
 Then navigate to:
 
@@ -409,6 +308,7 @@ Select:
 ```text
 Bucket owner enforced
 ```
+![image](images/9.jpg)
 
 ---
 
@@ -431,6 +331,7 @@ Enable:
 ```text
 Versioning
 ```
+![image](images/7.jpg)
 
 ---
 
@@ -442,6 +343,7 @@ Select:
 Server-side encryption with AWS KMS keys
 SSE-KMS
 ```
+![image](images/8.jpg)
 
 Select:
 
@@ -469,6 +371,7 @@ Navigate to:
 Properties
 → Default encryption
 ```
+![image](images/11.jpg)
 
 Verify:
 
@@ -477,6 +380,7 @@ Encryption: SSE-KMS
 KMS Key: insight-data-s3-day11
 S3 Bucket Key: Enabled
 ```
+![image](images/12.jpg)
 
 Also verify:
 
@@ -514,6 +418,7 @@ Region:
 ```text
 us-east-2
 ```
+![image](images/33.jpg)
 
 ---
 
@@ -524,6 +429,7 @@ Enable:
 ```text
 Object Lock
 ```
+![image](images/34.jpg)
 
 Object Lock requires Versioning.
 
@@ -595,6 +501,7 @@ Open the source bucket:
 ```text
 insight-data-raw-bucket-<unique-suffix>
 ```
+![image](images/13.jpg)
 
 Create these folders:
 
@@ -604,18 +511,6 @@ versions/
 logs/
 storage/
 presigned/
-```
-
-Final structure:
-
-```text
-insight-data-raw-bucket
-│
-├── documents/
-├── versions/
-├── logs/
-├── storage/
-└── presigned/
 ```
 
 ---
@@ -647,6 +542,7 @@ Verify:
 ```text
 Storage class: Standard
 ```
+![image](images/15.jpg)
 
 ---
 
@@ -669,6 +565,7 @@ Upload it to:
 ```text
 storage/
 ```
+![image](images/16.jpg)
 
 During upload, select:
 
@@ -678,6 +575,8 @@ Intelligent-Tiering
 ```
 
 Verify the object's storage class after upload.
+
+![image](images/14.jpg)
 
 ---
 
@@ -694,12 +593,8 @@ Create:
 ```text
 version-demo.txt
 ```
+![image](images/18.jpg)
 
-Content:
-
-```text
-This is Version 1 of the demonstration object.
-```
 
 Upload the object.
 
@@ -710,6 +605,8 @@ Show versions
 ```
 
 Record the Version ID.
+
+![image](images/17.jpg)
 
 ---
 
@@ -726,6 +623,7 @@ Upload it using the exact same key:
 ```text
 versions/version-demo.txt
 ```
+![image](images/19.jpg)
 
 Enable:
 
@@ -733,11 +631,13 @@ Enable:
 Show versions
 ```
 
-You should now see:
+You should now see: 
+
+versions
 
 ```text
-Version 2
-Version 1
+versions1
+versions2
 ```
 
 Each version has a different Version ID.
@@ -777,6 +677,7 @@ Delete Marker
 Version 2
 Version 1
 ```
+![image](images/21.jpg)
 
 ---
 
@@ -797,6 +698,7 @@ Verify the content:
 ```text
 This is Version 2 of the demonstration object.
 ```
+![image](images/22.jpg)
 
 ---
 
@@ -819,6 +721,7 @@ Upload to:
 ```text
 documents/private-report.txt
 ```
+![image](images/23.jpg)
 
 ---
 
@@ -838,6 +741,7 @@ aws s3 cp \
 s3://$SOURCE_BUCKET/documents/private-report.txt \
 s3://$DEST_BUCKET/copied/s3-data-reports.txt
 ```
+![image](images/24.jpg)
 
 Verify:
 
@@ -856,25 +760,7 @@ Open:
 ```text
 copied/s3-data-reports.txt
 ```
-
-Check the object's properties.
-
-Verify:
-
-```text
-Server-side encryption:
-SSE-KMS
-```
-
-Verify the KMS key:
-
-```text
-insight-data-s3-day11
-```
-
-The destination object has its own Version ID.
-
-This demonstrates independent object versioning between buckets.
+![image](images/25.jpg)
 
 ---
 
@@ -895,6 +781,7 @@ Expected result:
 ```text
 AccessDenied
 ```
+![image](images/26.jpg)
 
 This confirms that the object is private.
 
@@ -909,6 +796,7 @@ Bucket
 → Permissions
 → Bucket policy
 ```
+![image](images/27.jpg)
 
 With Block Public Access enabled, a public-read policy should be blocked/rejected or prevented from providing public access.
 
@@ -928,6 +816,8 @@ Example test policy:
   ]
 }
 ```
+
+![image](images/28.jpg)
 
 Replace:
 
@@ -956,6 +846,7 @@ aws s3 presign \
 s3://$SOURCE_BUCKET/documents/private-report.txt \
 --expires-in 60
 ```
+![image](images/29.jpg)
 
 The command returns a temporary signed URL.
 
@@ -964,6 +855,8 @@ The command returns a temporary signed URL.
 # 22. Validate Presigned URL
 
 Open the presigned URL in an incognito/private browser.
+
+![image](images/30.jpg)
 
 Expected:
 
@@ -1113,25 +1006,9 @@ This automatically removes incomplete multipart uploads.
 
 The rule should contain:
 
-```text
-Rule:
-logs-transition-and-cleanup
+![image](images/31.jpg)
 
-Scope:
-logs/
-
-Current versions:
-30 days  → Standard-IA
-90 days  → Glacier Flexible Retrieval
-365 days → Delete
-
-Noncurrent versions:
-30 days → Standard-IA
-90 days → Delete
-
-Incomplete multipart uploads:
-7 days → Delete
-```
+![image](images/32.jpg)
 
 ---
 
@@ -1257,6 +1134,8 @@ Expected:
 }
 ```
 
+![image](images/35.jpg)
+
 ---
 
 # 33. Check Object Retention
@@ -1285,27 +1164,7 @@ Once the deletion test has been captured, change:
 Legal Hold:
 ON → OFF
 ```
-
-Alternatively, use:
-
-```bash
-aws s3api put-object-legal-hold \
---bucket "$LOCK_BUCKET" \
---key "$KEY" \
---version-id "$VERSION_ID" \
---legal-hold Status=OFF \
---region us-east-2
-```
-
-Verify:
-
-```bash
-aws s3api get-object-legal-hold \
---bucket "$LOCK_BUCKET" \
---key "$KEY" \
---version-id "$VERSION_ID" \
---region us-east-2
-```
+![image](images/36.jpg)
 
 Expected:
 
@@ -1328,187 +1187,9 @@ aws s3api delete-object \
 --version-id "$VERSION_ID" \
 --region us-east-2
 ```
+![image](images/37.jpg)
 
 Deletion should now succeed.
-
----
-
-# 36. AWS CLI Validation
-
-## Check AWS Identity
-
-```bash
-aws sts get-caller-identity
-```
-
----
-
-## List S3 Buckets
-
-```bash
-aws s3 ls
-```
-
----
-
-## Check Versioning
-
-```bash
-aws s3api get-bucket-versioning \
---bucket "$SOURCE_BUCKET"
-```
-
-Expected:
-
-```json
-{
-    "Status": "Enabled"
-}
-```
-
----
-
-## List Object Versions
-
-```bash
-aws s3api list-object-versions \
---bucket "$SOURCE_BUCKET" \
---prefix "versions/version-demo.txt"
-```
-
----
-
-## Check Bucket Encryption
-
-```bash
-aws s3api get-bucket-encryption \
---bucket "$SOURCE_BUCKET"
-```
-
-Destination:
-
-```bash
-aws s3api get-bucket-encryption \
---bucket "$DEST_BUCKET"
-```
-
----
-
-## Check Object Lock
-
-```bash
-aws s3api get-object-lock-configuration \
---bucket "$LOCK_BUCKET"
-```
-
----
-
-# 📸 Validation Evidence
-
-Capture screenshots for the following checkpoints.
-
-## KMS
-
-* [ ] Customer-managed KMS key created
-* [ ] `alias/insight-data-s3-day11`
-* [ ] Key status Enabled
-
-## Source Bucket
-
-* [ ] Bucket created
-* [ ] Versioning Enabled
-* [ ] SSE-S3 enabled
-* [ ] Block Public Access enabled
-* [ ] Bucket owner enforced
-
-## Destination Bucket
-
-* [ ] Versioning Enabled
-* [ ] SSE-KMS enabled
-* [ ] `insight-data-s3-day11` selected
-* [ ] S3 Bucket Key enabled
-
-## Object Storage
-
-* [ ] `documents/`
-* [ ] `versions/`
-* [ ] `logs/`
-* [ ] `storage/`
-* [ ] `presigned/`
-* [ ] S3 Standard object
-* [ ] Intelligent-Tiering object
-
-## Versioning
-
-* [ ] Version 1
-* [ ] Version 2
-* [ ] Different Version IDs
-* [ ] Delete marker
-* [ ] Version 2 recovered
-
-## Bucket Copy
-
-* [ ] Source object
-* [ ] Destination object
-* [ ] Independent Version ID
-* [ ] SSE-KMS encryption
-
-## Access Control
-
-* [ ] Normal Object URL → AccessDenied
-* [ ] Block Public Access validation
-* [ ] Presigned URL → temporary access
-* [ ] Expired presigned URL → access denied
-
-## Lifecycle
-
-* [ ] Lifecycle rule created
-* [ ] `logs/` prefix
-* [ ] 30-day Standard-IA
-* [ ] 90-day Glacier Flexible Retrieval
-* [ ] 365-day expiration
-* [ ] Noncurrent version transitions
-* [ ] Noncurrent deletion
-* [ ] 7-day multipart cleanup
-
-## Object Lock
-
-* [ ] Object Lock enabled
-* [ ] `retention-demo.txt`
-* [ ] Legal Hold ON
-* [ ] Delete denied
-* [ ] Legal Hold OFF
-* [ ] Object version deleted
-
----
-
-# 🧪 Final Validation Matrix
-
-| Feature                    | Expected Result               |
-| -------------------------- | ----------------------------- |
-| S3 Versioning              | Enabled                       |
-| Source Encryption          | SSE-S3                        |
-| Destination Encryption     | SSE-KMS                       |
-| KMS Key                    | `alias/insight-data-s3-day11` |
-| S3 Bucket Key              | Enabled                       |
-| Block Public Access        | Enabled                       |
-| Normal Object URL          | AccessDenied                  |
-| Presigned URL              | Temporary access              |
-| Version 1                  | Created                       |
-| Version 2                  | Created                       |
-| Delete Marker              | Created                       |
-| Version Recovery           | Successful                    |
-| Bucket Copy                | Successful                    |
-| Lifecycle                  | Configured                    |
-| Standard-IA                | 30 days                       |
-| Glacier Flexible Retrieval | 90 days                       |
-| Expiration                 | 365 days                      |
-| Noncurrent Cleanup         | Configured                    |
-| Multipart Cleanup          | 7 days                        |
-| Object Lock                | Enabled                       |
-| Legal Hold                 | Successfully tested           |
-| Protected Delete           | AccessDenied                  |
-| Post-Hold Delete           | Successful                    |
 
 ---
 
@@ -1715,48 +1396,22 @@ Legal Hold
 creates a strong foundation for secure and resilient object-storage workflows.
 
 ---
+# 📌 Final Project Statement
 
-# 🚀 Skills Demonstrated
-
-```text
-AWS S3
-AWS KMS
-S3 Versioning
-S3 Object Lock
-Legal Hold
-SSE-S3
-SSE-KMS
-S3 Bucket Key
-Block Public Access
-Presigned URLs
-S3 Lifecycle Management
-S3 Standard
-S3 Intelligent-Tiering
-Standard-IA
-Glacier Flexible Retrieval
-AWS CLI
-Object Recovery
-Cloud Storage Security
-Data Protection
-Storage Optimization
-```
-
+> Successfully implemented a private, versioned, encrypted, lifecycle-managed, and protected Amazon S3 architecture using SSE-S3, SSE-KMS, customer-managed AWS KMS keys, S3 Bucket Key, Versioning, Presigned URLs, Lifecycle Management, and S3 Object Lock Legal Hold. Validated object recovery, private access controls, bucket-to-bucket copying, encryption, automated lifecycle policies, and deletion protection through both the AWS Management Console and AWS CLI.
 ---
 
 # 👨‍💻 Author
 
 **Hardik Darji**
 
-### Project
-
-**Day 11 — Private, Versioned, and Protected Amazon S3**
-
-### AWS Region
-
-**US East (Ohio) — `us-east-2`**
+DevOps Engineer
 
 ---
+## ⭐ Support 
 
-# 📌 Final Project Statement
+⭐ **If you find this repository helpful, please consider giving it a Star!**
 
-> Successfully implemented a private, versioned, encrypted, lifecycle-managed, and protected Amazon S3 architecture using SSE-S3, SSE-KMS, customer-managed AWS KMS keys, S3 Bucket Key, Versioning, Presigned URLs, Lifecycle Management, and S3 Object Lock Legal Hold. Validated object recovery, private access controls, bucket-to-bucket copying, encryption, automated lifecycle policies, and deletion protection through both the AWS Management Console and AWS CLI.
+Your support helps me stay motivated to keep learning, building, and sharing more DevOps & AWS projects. 🚀☁️
+
+**Thanks for your support! 🙌**

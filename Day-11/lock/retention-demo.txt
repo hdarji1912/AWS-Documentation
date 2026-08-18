@@ -1,0 +1,1 @@
+This object is protected using S3 Object Lock Legal Hold.

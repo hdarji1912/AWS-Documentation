@@ -1,0 +1,14 @@
+# AWS Learning Journey
+
+## AWS — Day 11 Presigned URL Lab
+
+**Classification: Synthetic Training Record**
+
+This is a private synthetic S3 object created exclusively for AWS hands-on practice.
+
+**Expected behavior:**
+
+* A normal S3 Object URL should return `AccessDenied`.
+* A valid short-lived **presigned GET URL** should allow temporary authorized access.
+* The presigned URL provides time-limited access without making the S3 object public.
+* Treat the complete presigned URL as a **temporary bearer credential** and do not share it publicly.

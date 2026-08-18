@@ -1,0 +1,11 @@
+# AWS Learning Journey
+
+## AWS — Day 11
+
+**Document: Private S3 Security & Access Report**
+**Classification: Training-Only**
+
+This private training report contains synthetic data created exclusively for AWS hands-on practice.
+
+**Expected normal Object URL result:** `AccessDenied`
+**Expected presigned URL result:** Temporary authorized access

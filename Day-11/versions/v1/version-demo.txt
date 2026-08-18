@@ -1,0 +1,7 @@
+# AWS Learning Journey
+
+## AWS — Day 11 Versioning Lab
+
+**Version:** 1
+**Status:** Initial training content
+**Message:** This is the first version of `versions/version-demo.txt` created for the Amazon S3 Versioning hands-on demonstration.

@@ -1,0 +1,10 @@
+# AWS Learning Journey
+
+## AWS — Day 11 Storage-Class Lab
+
+**Expected storage class:** S3 Standard
+**Use case:** Frequently accessed data requiring millisecond access
+**Minimum storage duration:** None
+**Retrieval fee:** No per-GB retrieval fee
+
+**Training note:** This synthetic object is stored in **S3 Standard** for demonstration and hands-on learning purposes.

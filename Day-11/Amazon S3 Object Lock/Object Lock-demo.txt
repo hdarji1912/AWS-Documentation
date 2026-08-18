@@ -1,0 +1,12 @@
+# AWS Learning Journey
+
+## AWS  — Day 11 Object Lock Lab
+
+**Classification:** Synthetic Training Record
+**Protection Exercise:** Amazon S3 Object Lock — Legal Hold
+
+**Expected behavior:**
+
+1. Object deletion fails while **Legal Hold is ON**.
+2. Object deletion succeeds after **Legal Hold is OFF**, provided no retention period remains.
+3. The exercise demonstrates how **S3 Object Lock** can protect objects from accidental deletion or modification.

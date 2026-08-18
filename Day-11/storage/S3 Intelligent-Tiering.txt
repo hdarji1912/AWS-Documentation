@@ -1,0 +1,10 @@
+# AWS Learning Journey
+
+## AWS  — Day 11 Storage-Class Lab
+
+**Expected storage class:** S3 Intelligent-Tiering
+**Use case:** Unknown or changing access patterns
+**Minimum storage duration:** None
+**Retrieval fee:** None
+
+**Training note:** This synthetic sample object is smaller than 128 KB, so it remains in the **Frequent Access tier** and is not monitored or automatically tiered.

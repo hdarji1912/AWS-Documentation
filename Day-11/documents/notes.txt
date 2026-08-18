@@ -1,0 +1,9 @@
+# AWS Learning Journey
+
+## AWS  — Day 11
+
+**Topic: Amazon S3 — Private, Versioned, and Protected Storage**
+
+This is a hands-on AWS learning project demonstrating secure Amazon S3 bucket configuration, versioning, encryption, storage classes, prefixes, and object recovery.
+
+No customer, learner, or production data is stored in this project. All resources and objects are created solely for learning, practice, and demonstration purposes.

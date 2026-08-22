@@ -1,0 +1,22 @@
+## AWS learning journey — Day 12
+
+### Demo: Amazon S3 Same-Region Replication
+
+**Version:** 1
+
+**Source Region:** US East (Ohio) — `us-east-2`
+**Destination Region:** US East (Ohio) — `us-east-2`
+
+**Required Source Key:** `srr/s3-srr-demo.txt`
+
+### Expected Result
+
+* The replication status changes from **Pending** to **Completed**.
+* The replicated object appears in the configured **Ohio SRR destination bucket**.
+* The object is replicated using **Same-Region Replication (SRR)** within `us-east-2`.
+* It does **not** match the CRR rule because the CRR rule is configured with the `crr/` prefix.
+* Both the source and destination buckets remain in the **US East (Ohio)** Region.
+
+### Data Classification
+
+Synthetic training data only. No customer, learner, personal, confidential, or production data is stored in this object.

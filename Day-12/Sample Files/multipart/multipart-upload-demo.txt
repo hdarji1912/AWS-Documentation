@@ -1,0 +1,24 @@
+# AWS learning journey — Day 12
+
+### Demo: Amazon S3 Multipart Upload
+
+**Region:** US East (Ohio) — `us-east-2`
+
+Amazon S3 Multipart Upload divides a large object into multiple independently uploaded parts before assembling them into a single object.
+
+### Key Observations
+
+* Failed parts can be **retried independently** without restarting the entire upload.
+* Multiple parts can be **uploaded concurrently** to improve upload efficiency.
+* All uploaded parts must be **completed or explicitly aborted**.
+* Incomplete multipart uploads can result in **additional storage charges**.
+* An S3 **Lifecycle Rule** can automatically abort incomplete multipart uploads after a configured number of days.
+* Multipart Upload is particularly useful for **large objects and unreliable network connections**.
+
+### Note
+
+This is a small conceptual sample and does not, by itself, force S3 to use multipart upload behavior.
+
+### Data Classification
+
+Synthetic training data only.

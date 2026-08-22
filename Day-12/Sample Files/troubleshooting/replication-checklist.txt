@@ -1,0 +1,18 @@
+# AWS learning journey — Day 12
+
+## S3 Replication Troubleshooting Checklist
+
+1. Confirm **S3 Versioning** is enabled on both the source and destination buckets.
+2. Confirm the **replication rule is enabled** and correctly configured.
+3. Verify that the object key matches the configured **prefix or tag-based filter**.
+4. Confirm the object was uploaded **after the replication rule became active**.
+5. Check the source object's **replication status** for the current version.
+6. Confirm the replication **IAM role** has permission to read from the source bucket and write to the destination bucket.
+7. For **SSE-KMS encrypted objects**, verify that the required source and destination **KMS key permissions** are correctly configured.
+8. Confirm the **destination bucket and AWS Region** are correct.
+9. Remember that S3 replication is **asynchronous**, so replication may remain **Pending** temporarily.
+10. Use **S3 Batch Replication** when eligible pre-existing objects need to be replicated.
+
+### Data Classification
+
+Synthetic training data only.

@@ -1,0 +1,25 @@
+# AWS learning journey — Day 12
+
+### Demo: Amazon S3 Cross-Region Replication
+
+**Version:** 2
+
+**Source Region:** US East (Ohio) — `us-east-2`
+**Destination Region:** US West (Oregon) — `us-west-2`
+
+**Required Source Key:** `crr/s3-crr-demo.txt`
+
+This file intentionally has the **same filename and S3 key as Version 1**.
+
+Upload it after Version 1 to demonstrate **S3 Versioning and CRR of later versions**.
+
+### Expected Result
+
+* A new **Version ID** is created in the source bucket.
+* The new version is replicated to the **Oregon CRR destination bucket**.
+* **Show versions** displays both Version 1 and Version 2.
+* The new version is replicated from **Ohio (`us-east-2`) to Oregon (`us-west-2`)**.
+
+### Data Classification
+
+Synthetic training data only.

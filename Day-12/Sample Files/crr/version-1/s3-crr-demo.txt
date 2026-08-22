@@ -1,0 +1,21 @@
+## AWS learning journey — Day 12
+
+### Demo: Amazon S3 Cross-Region Replication
+
+**Version:** 1
+
+**Source Region:** US East (Ohio) — `us-east-2`
+**Destination Region:** US West (Oregon) — `us-west-2`
+
+**Required Source Key:** `crr/s3-crr-demo.txt`
+
+### Expected Result
+
+* The replication status changes from **Pending** to **Completed**.
+* This version appears in the **Oregon CRR destination bucket**.
+* It does **not** match the SRR rule because the SRR rule uses the `srr/` prefix.
+* The object is replicated from **Ohio (`us-east-2`) to Oregon (`us-west-2`)**.
+
+### Data Classification
+
+Synthetic training data only. No customer, learner, personal, confidential, or production data is stored in this object.

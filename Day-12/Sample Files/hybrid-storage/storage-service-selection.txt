@@ -1,0 +1,43 @@
+# AWS learning journey — Day 12
+
+### Topic: File and Hybrid Storage Service Selection
+
+**Amazon EFS**
+
+* Shared, elastic NFS file storage for Linux workloads.
+
+**Amazon FSx for Windows File Server**
+
+* Managed Windows file storage using SMB with Microsoft integration.
+
+**Amazon FSx for Lustre**
+
+* High-performance parallel file system designed for HPC, machine learning, and data processing workloads.
+
+**Amazon FSx for NetApp ONTAP**
+
+* Enterprise-grade NAS capabilities for NetApp-compatible workloads and advanced storage requirements.
+
+**Amazon FSx for OpenZFS**
+
+* Managed ZFS-based file storage optimized for Linux workloads.
+
+**AWS Storage Gateway**
+
+* Hybrid storage access that connects on-premises environments with AWS cloud storage.
+
+**AWS DataSync**
+
+* Automated and accelerated online transfer of files and objects between on-premises storage and AWS services.
+
+**AWS Snow Family**
+
+* Physical devices for offline data migration, edge computing, and environments with limited network connectivity.
+
+**AWS Transfer Family**
+
+* Managed file transfer service supporting SFTP, FTPS, FTP, and AS2 with Amazon S3 or Amazon EFS as the storage backend.
+
+### Data Classification
+
+Synthetic training data only.

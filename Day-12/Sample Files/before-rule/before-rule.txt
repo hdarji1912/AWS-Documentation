@@ -1,0 +1,18 @@
+## AWS learning journey — Day 12
+
+### File: `before-rule.txt`
+
+This synthetic object was uploaded to the source S3 bucket **before the replication rules were configured**.
+
+### Expected Result
+
+* The object remains available only in the source bucket.
+* It is **not automatically replicated** to the configured SRR or CRR destination bucket.
+* Objects created before replication rules require **S3 Batch Replication** if they need to be replicated later.
+* This demonstrates that standard S3 replication rules primarily apply to eligible objects after replication is configured.
+
+### Data Classification
+
+No customer, learner, personal, confidential, or production data is stored in this file.
+
+This file contains only synthetic data created for AWS learning and replication testing purposes.

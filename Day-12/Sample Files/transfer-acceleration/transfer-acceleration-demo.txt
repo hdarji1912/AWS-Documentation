@@ -1,0 +1,19 @@
+# AWS learning journey — Day 12
+
+### Demo: Amazon S3 Transfer Acceleration
+
+**Region:** US East (Ohio) — `us-east-2`
+
+Amazon S3 Transfer Acceleration can improve long-distance uploads by routing traffic through AWS edge locations and the AWS global network before reaching the S3 bucket.
+
+### Trainer Discussion Points
+
+* The S3 bucket name must **not contain periods (`.`)** to use Transfer Acceleration.
+* An **accelerated S3 endpoint** is used instead of the standard regional endpoint.
+* **Additional charges** apply when using S3 Transfer Acceleration.
+* A small file uploaded within the **same AWS Region** may not provide a meaningful performance comparison.
+* Transfer Acceleration is primarily useful for **long-distance uploads** where network distance is significant.
+
+### Data Classification
+
+Synthetic training data only.

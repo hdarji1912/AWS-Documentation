@@ -1,0 +1,24 @@
+# AWS learning journey — Day 12
+
+### Demo: Replication Prefix Filter Control
+
+**Source Region:** US East (Ohio) — `us-east-2`
+**SRR Destination Region:** US East (Ohio) — `us-east-2`
+**CRR Destination Region:** US West (Oregon) — `us-west-2`
+
+**Required Source Key:** `other/no-replication-demo.txt`
+
+This object intentionally does **not** use the `srr/` or `crr/` prefix.
+
+### Expected Result
+
+* The object remains in the **source bucket**.
+* It does **not** appear in the **Ohio SRR destination bucket**.
+* It does **not** appear in the **Oregon CRR destination bucket**.
+* No replication is triggered because the object key does not match either configured replication prefix.
+
+This demonstrates that S3 replication rules can be controlled using **configured object key prefixes**.
+
+### Data Classification
+
+Synthetic training data only.

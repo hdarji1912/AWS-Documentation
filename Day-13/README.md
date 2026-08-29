@@ -2103,12 +2103,15 @@ After completing this project, you should understand how to:
 18. Validate and restore database backups.
 
 ---
+## 🚀 Project Status
 
-# 👨‍💻 Author
+```text
+AWS Day 13
+RDS + Aurora + RDS Proxy + Recovery + Backup Automation
 
-## Hardik Darji
-DevOps Engineer
-
+Status: Completed ✅
+Region: us-east-2
+```
 ---
 
 # ⭐ Support
@@ -2121,12 +2124,8 @@ Feel free to fork, explore and improve the project.
 
 ---
 
-## 🚀 Project Status
+# 👨‍💻 Author
 
-```text
-AWS Day 13
-RDS + Aurora + RDS Proxy + Recovery + Backup Automation
+## Hardik Darji
+DevOps Engineer
 
-Status: Completed ✅
-Region: us-east-2
-```

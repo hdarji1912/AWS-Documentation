@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Day14OrdersReadWrite",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:Query",
+        "dynamodb:UpdateItem"
+      ],
+      "Resource": [
+        "arn:aws:dynamodb:ap-south-1:<ACCOUNT_ID>:table/cloudadhar-orders-day14",
+        "arn:aws:dynamodb:ap-south-1:<ACCOUNT_ID>:table/cloudadhar-orders-day14/index/*"
+      ]
+    }
+  ]
+}

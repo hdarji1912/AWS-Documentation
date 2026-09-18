@@ -1,4 +1,4 @@
-# AWS Day 14 — Serverless Orders Management with DynamoDB Streams
+# AWS Day 14 — Serverless Orders application Management with DynamoDB Streams
 
 > A hands-on AWS serverless project demonstrating **DynamoDB access-pattern design, GSI, LSI, TTL, CRUD operations, DynamoDB Streams, AWS Lambda, CloudWatch Logs, and a temporary Orders Dashboard**.
 

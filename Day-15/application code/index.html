@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardik Darji — AWS Day 15</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f6ff 0%, #e1ecfd 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #1e293b;
+        }
+
+        .container {
+            background-color: #ffffff;
+            width: 940px;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Top Lab Tag */
+        .badge-top {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
+        }
+
+        h1 {
+            color: #0f172a;
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        h1 span {
+            color: #0284c7;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 28px;
+            font-weight: 400;
+        }
+
+        /* Domains Bar */
+        .domains-container {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .domain-pill {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .domain-pill .icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 11px;
+        }
+
+        .domain-pill.route53-pill .icon { background-color: #0284c7; }
+        .domain-pill.acm-pill .icon { background-color: #7c3aed; }
+
+        .domain-pill span {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        /* Architecture Section Header */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 25px;
+            color: #0f172a;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .section-header::before,
+        .section-header::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: #cbd5e1;
+        }
+
+        /* Architecture Flow Grid */
+        .architecture-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .arch-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 16px;
+            width: 270px;
+            min-height: 120px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        /* Colorful borders & background accents */
+        .arch-card.route53 { border: 1.5px solid #c084fc; background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%); }
+        .arch-card.cloudfront { border: 1.5px solid #38bdf8; background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); }
+        .arch-card.s3 { border: 1.5px solid #4ade80; background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%); }
+
+        .service-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .route53 .service-icon { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+        .cloudfront .service-icon { background: linear-gradient(135deg, #0284c7, #0369a1); }
+        .s3 .service-icon { background: linear-gradient(135deg, #16a34a, #15803d); }
+        .waf .service-icon { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        .acm .service-icon { background: linear-gradient(135deg, #d97706, #b45309); }
+
+        .arch-content h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .arch-content p {
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .arrow {
+            color: #0284c7;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Bottom Row Grid */
+        .bottom-grid {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .arch-card.waf, .arch-card.acm {
+            flex: 1;
+        }
+
+        .arch-card.waf { border: 1.5px solid #fca5a5; background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%); }
+        .arch-card.acm { border: 1.5px solid #fde68a; background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%); }
+
+        /* Feature Badges Bar */
+        .features-list {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            width: 100%;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 14px 20px;
+            border-radius: 14px;
+            justify-content: space-between;
+        }
+
+        .feature-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            background-color: #16a34a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        /* Footer Version Badge */
+        .page-version {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Top Lab Label -->
+        <div class="badge-top">AWS Day 15 • Edge Security Lab</div>
+        
+        <!-- Header details -->
+        <h1>Hardik Darji — <span>AWS Day 15</span></h1>
+        <p class="subtitle">Secure AWS edge delivery with private origins, HTTPS, DNS, and web protection.</p>
+
+        <!-- Domain Pills -->
+        <div class="domains-container">
+            <div class="domain-pill route535-pill">
+                <div class="icon" style="background-color: #0284c7;">🌐</div>
+                Domain: <span>hdarji.dpdns.org</span>
+            </div>
+            <div class="domain-pill acm-pill">
+                <div class="icon" style="background-color: #7c3aed;">🛡️</div>
+                ACM: <span>cdn.hdarji.dpdns.org</span>
+            </div>
+        </div>
+
+        <!-- Section Divider -->
+        <div class="section-header">Edge Delivery Architecture</div>
+
+        <!-- Top Flow: Route 53 -> CloudFront -> S3 -->
+        <div class="architecture-flow">
+            <div class="arch-card route53">
+                <div class="service-icon">53</div>
+                <div class="arch-content">
+                    <h3>Route 53</h3>
+                    <p>DNS for hdarji.dpdns.org</p>
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="arch-card cloudfront">
+                <div class="service-icon">🌐</div>
+                <div class="arch-content">
+                    <h3>CloudFront</h3>
+                    <p>Global Edge Delivery</p>
+                </div>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="arch-card s3">
+                <div class="service-icon">🪣</div>
+                <div class="arch-content">
+                    <h3>Amazon S3</h3>
+                    <p>Private Origin via OAC</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Row: WAF & ACM -->
+        <div class="bottom-grid">
+            <div class="arch-card waf">
+                <div class="service-icon">🛡️</div>
+                <div class="arch-content">
+                    <h3>AWS WAF</h3>
+                    <p>Protects the CloudFront distribution at the edge.</p>
+                </div>
+            </div>
+
+            <div class="arch-card acm">
+                <div class="service-icon">🔒</div>
+                <div class="arch-content">
+                    <h3>AWS Certificate Manager</h3>
+                    <p>Provides HTTPS for cdn.hdarji.dpdns.org.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Status Bar -->
+        <div class="features-list">
+            <div class="feature-badge"><div class="check-icon">✓</div> Private Origin</div>
+            <div class="feature-badge"><div class="check-icon">✓</div> HTTPS Enabled</div>
+            <div class="feature-badge"><div class="check-icon">✓</div> WAF Protected</div>
+            <div class="feature-badge"><div class="check-icon">✓</div> Global Delivery</div>
+        </div>
+
+        <!-- Version Footer -->
+        <div class="page-version">Page Version: 1</div>
+    </div>
+
+</body>
+</html>

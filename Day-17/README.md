@@ -27,7 +27,74 @@ Region Code: us-east-2
 
 # 🏗️ Architecture
 
+## Event Driven Order Processing
+
 ![architecture](images/architecture1.png)
+
+## Architecture Description
+
+- The solution uses an **event-driven order workflow** where an order-producing application sends events to Amazon SNS instead of communicating directly with individual consumers.
+
+- **Amazon SNS** acts as the initial distribution layer. Its subscriptions connect the order topic with multiple SQS queues, allowing different consumers to receive the messages they require.
+
+- The **Priority Queue** uses an SNS subscription filter to select messages based on attributes such as `priority = HIGH`. This prevents irrelevant messages from being delivered to that subscription.
+
+- **Amazon EventBridge** provides an independent routing mechanism for structured order events. The custom event bus evaluates incoming events against the configured rule and identifies orders with an `amount > 5000` condition.
+
+- When an event satisfies the EventBridge rule, it is forwarded to `aws-day17-priority-orders`. This creates a separate path for handling high-value orders.
+
+- **Amazon SQS Standard** provides reliable message buffering between producers and consumers. Applications can process messages asynchronously without requiring the producer and consumer to be available at exactly the same time.
+
+- The **SQS visibility timeout** temporarily hides a message after it has been received. If processing fails repeatedly, the message is moved to `aws-day17-orders-dlq` after the configured maximum receive count of `3`.
+
+- The **Dead-Letter Queue** keeps failed messages separate from normal traffic. These messages can be examined for troubleshooting and, when appropriate, returned to the source queue through the redrive operation.
+
+- The **FIFO queue** is used where message sequence matters. Messages belonging to the same Message Group ID are processed in their intended order.
+
+- **EventBridge Scheduler** adds scheduled processing to the system. The configured payment-reminder schedule sends a predefined message to the Priority Queue at the selected execution time.
+
+- **Amazon CloudWatch** can be used to observe queue-related metrics, EventBridge activity, processing behavior, and service failures during operation.
+
+- The architecture follows a **least-privilege security approach**, with IAM permissions controlling service-to-service access and encryption enabled for supported messaging resources.
+
+- Consumers should implement **idempotent processing** so that receiving the same event more than once does not unintentionally repeat the same business operation.
+
+- The design is modular and can be extended with additional queues, SNS subscriptions, EventBridge rules, Lambda consumers, or other event-processing components as the application grows.
+
+- **Cost management** should take into account SQS requests and retention, SNS publishing and deliveries, EventBridge events and invocations, Scheduler executions, and other enabled AWS resources.
+---
+## Kinesis Firehos S3 Streaming
+
+![architecture](images/architecture.png)
+
+- **Client applications and user devices** generate clickstream events such as `PRODUCT_VIEWED` and `CHECKOUT_STARTED` and publish them to the `aws-day17-clickstream` Kinesis Data Stream.
+
+- The **customer ID** is used as the Kinesis partition key. Records containing the same partition key are mapped consistently to the same shard, which helps preserve ordering for that customer.
+
+- The Kinesis stream operates in **On-Demand Capacity Mode**, allowing the streaming workload to handle changing traffic levels without manually managing shard capacity.
+
+- **Amazon Data Firehose** consumes records from `aws-day17-clickstream` and acts as the delivery layer between Kinesis and Amazon S3.
+
+- Firehose temporarily **buffers incoming records** before writing them to the destination bucket. Buffering helps balance delivery speed with the efficiency of writing objects to S3.
+
+- The processed streaming records are delivered to the **S3 streaming bucket**:
+  `aws-day17-streaming-<ACCOUNT-ID>-us-east-2`
+
+- The S3 destination is located in the **Ohio (`us-east-2`) Region** and provides durable storage for the collected clickstream data.
+
+- **S3 Block Public Access** should remain enabled so that the analytics data is not unintentionally exposed to the public.
+
+- **Server-Side Encryption** protects the objects stored in the S3 destination and provides encryption at rest for the collected streaming data.
+
+- Firehose can organize delivered objects using **prefix-based paths**, making the resulting S3 data easier to separate by time or other logical categories.
+
+- **Amazon CloudWatch** can be used to monitor the streaming pipeline, including Kinesis ingestion activity, Firehose delivery performance, delivery failures, and related service metrics.
+
+- The pipeline can be enhanced with **AWS Lambda transformations** when records need to be cleaned, transformed, filtered, enriched, or masked before reaching S3.
+
+- Once the data is stored in S3, services such as **Amazon Athena** can be used for SQL-based analysis, while **Amazon QuickSight** can be used to build dashboards and visualize clickstream activity.
+
+- Cost planning should consider **Kinesis Data Streams usage, Firehose data processing and delivery, S3 storage, and S3 request activity**.
 
 ---
 

@@ -67,6 +67,8 @@ Region Code: us-east-2
 
 ![architecture](images/architecture.png)
 
+## Architecture Description
+
 - **Client applications and user devices** generate clickstream events such as `PRODUCT_VIEWED` and `CHECKOUT_STARTED` and publish them to the `aws-day17-clickstream` Kinesis Data Stream.
 
 - The **customer ID** is used as the Kinesis partition key. Records containing the same partition key are mapped consistently to the same shard, which helps preserve ordering for that customer.
